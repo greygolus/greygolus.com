@@ -74,7 +74,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* STAGE LIGHTING */
 .stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:start;}
 .stage-img{width:100%;border-radius:4px;border:1px solid var(--border);display:block;}
-.stage-ref-img{width:100%;border-radius:4px;border:1px solid var(--border);display:block;max-height:260px;object-fit:cover;object-position:top;}
+.stage-ref-img{width:100%;border-radius:4px;border:1px solid var(--border);display:block;object-fit:contain;}
 .stage-caption{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.1em;margin-top:8px;}
 .stage-ref-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:6px;}
 .stage-body{font-size:15px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:16px;}
@@ -132,7 +132,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .torb1{width:350px;height:350px;background:rgba(94,234,212,0.06);top:-50px;right:5%;}
 .torb2{width:400px;height:400px;background:rgba(167,139,250,0.06);bottom:-100px;right:25%;}
 .tools-grid{padding:48px 52px;display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
-.tool-card{background:var(--surface);border:1px solid var(--border);padding:36px;transition:border-color .25s;}
+.tool-card{background:var(--surface);border:1px solid var(--border);padding:24px;transition:border-color .25s;}
 .tool-card.full{grid-column:1/-1;}
 .tool-card:hover{border-color:rgba(167,139,250,0.2);}
 .tool-title{font-size:18px;font-weight:600;margin-bottom:5px;}
@@ -346,7 +346,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
               <span id="bb-label" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.1em;">Warm White — typical incandescent</span>
             </div>
             <div style="position:relative;background:#05060b;border:1px solid var(--border);border-radius:4px;padding:12px;">
-              <canvas id="bb-chart" height="240"></canvas>
+              <canvas id="bb-proj-chart" height="240"></canvas>
             </div>
             <div style="margin-top:10px;display:flex;gap:20px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.08em;">
               <span><span style="color:#ffbb55;">━</span> Blackbody (Planck's law)</span>
@@ -446,7 +446,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         </div>
       </div>
       <div class="lens-canvas-wrap">
-        <canvas id="lens-canvas" height="380"></canvas>
+        <canvas id="lens-canvas" height="240"></canvas>
         <div class="lens-hint">Drag lenses or target to reposition</div>
       </div>
     </div>
@@ -463,7 +463,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       </div>
       <button class="cbtn" onclick="calcSnell()">Calculate + Draw</button>
       <div class="cresult" id="s-res"></div>
-      <div class="vis-wrap"><canvas id="snell-c" height="240"></canvas></div>
+      <div class="vis-wrap"><canvas id="snell-c" height="160"></canvas></div>
     </div>
 
     <!-- TIR -->
@@ -478,7 +478,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       </div>
       <button class="cbtn" onclick="calcTIR()">Check</button>
       <div class="cresult" id="tir-res"></div>
-      <div class="vis-wrap"><canvas id="tir-c" height="200"></canvas></div>
+      <div class="vis-wrap"><canvas id="tir-c" height="140"></canvas></div>
     </div>
 
     <!-- LENS MAKER -->
@@ -549,7 +549,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         <div class="calc-f" style="min-width:130px;"><label>T4 (K)</label><div style="display:flex;gap:8px;"><input id="bb-t4" type="number" value="6500" step="100"><input type="color" id="bb-c4" value="#99bbff" style="width:34px;padding:2px;background:none;border:1px solid var(--border);border-radius:2px;"></div></div>
         <div style="align-self:flex-end;"><button class="cbtn" onclick="plotBB()">Plot</button></div>
       </div>
-      <div class="vis-wrap"><canvas id="bb-chart" height="300"></canvas></div>
+      <div class="vis-wrap"><canvas id="bb-chart" height="200"></canvas></div>
       <div id="bb-peaks" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;letter-spacing:.05em;"></div>
     </div>
 
@@ -563,7 +563,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         <div class="calc-f"><label>n2 interface B</label><input id="sw-nb" type="number" value="2.42" step="0.01"></div>
         <div style="align-self:flex-end;"><button class="cbtn" onclick="plotSweep()">Plot</button></div>
       </div>
-      <div class="vis-wrap"><canvas id="sw-chart" height="280"></canvas></div>
+      <div class="vis-wrap"><canvas id="sw-chart" height="200"></canvas></div>
     </div>
 
   </div>
@@ -639,7 +639,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
     <h2 class="section-head reveal">Interactive <span class="grad-text">resources.</span></h2>
     <div class="res-sites-grid">
       <a href="https://www.color-in-color.info/" target="_blank" class="res-site-card reveal">
-        <img class="res-site-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0STNVRJk2q98qK6KxfUypZimmWfTX9lvziAIBwWZjIiXo5OibRp16P_tghN-DwNDK06_wk8RvihMu6ZUJTuX4o6dBBxSLKFhZPVed1KIJWdrSas_5i-1kkl0Skal9nvqOCZi2IUX9eEGXIbuLyZgNaJmApmkecIVLnz_1HrnlCRYNKcEJOMBk3BS-Ss=w16383" alt="Color in Color preview">
+        <div class="res-site-img" style="background:linear-gradient(135deg,#ff0044,#ff8800,#ffee00,#00cc66,#0088ff,#7733ff);"></div>
         <div class="res-site-body">
           <div class="res-site-name">Color in Color</div>
           <div class="res-site-desc">All about color vision and beyond interesting — it makes learning about all the differing things about color vision so engaging and interactive.</div>
@@ -1067,7 +1067,7 @@ function renderLens(){
       ledData.push(ledSpectrum(w)/maxLED);
       bgColors.push(wavelengthToRGB(w));
     }
-    var ctx=document.getElementById('bb-chart');
+    var ctx=document.getElementById('bb-proj-chart');
     if(!ctx)return;
     if(bbChart)bbChart.destroy();
     bbChart=new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[
