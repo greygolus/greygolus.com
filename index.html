@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grey Golus — Optical Engineering</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -157,6 +158,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 #lens-canvas{display:block;width:100%;}
 .lens-hint{position:absolute;bottom:8px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.1em;}
 .lens-metrics{background:rgba(94,234,212,0.05);border:1px solid rgba(94,234,212,0.15);border-radius:2px;padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);line-height:1.9;min-height:60px;margin-top:12px;}
+/* COURSEWORK */
+.cw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.cw-item{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:24px;transition:border-color .22s;}
+.cw-item:hover{border-color:rgba(94,234,212,0.2);}
+.cw-item-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.cw-item-sub{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;}
+.cw-item-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;}
+.cw-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;margin-top:10px;margin-right:4px;}
+.cw-tag-lecture{color:var(--teal);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.15);}
+.cw-tag-lab{color:var(--purple);background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.15);}
 /* RESOURCES */
 .res-intro{font-size:17px;font-weight:300;color:var(--muted);line-height:1.85;max-width:700px;margin-bottom:48px;}
 .res-channel{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid rgba(167,139,250,0.15);}
@@ -187,6 +198,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   .footer-bar{flex-direction:column;gap:8px;padding:20px;}
   .hero-btns{flex-direction:column;}
   .res-video-grid{grid-template-columns:repeat(2,1fr);}
+  .cw-grid{grid-template-columns:1fr;}
   .res-sites-grid{grid-template-columns:1fr;}
 }
 </style>
@@ -278,6 +290,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
     </div>
   </div>
 
+  <!-- COURSEWORK -->
+  <div class="section-wrap" style="padding-top:0">
+    <p class="s-label reveal">Coursework</p>
+    <h2 class="section-head reveal">What I am <span class="grad-text">studying.</span></h2>
+    <div class="cw-grid">
+      <div class="cw-item reveal">
+        <div class="cw-item-title">Geometrical Optics</div>
+        <div class="cw-item-sub">Ray Optics</div>
+        <div class="cw-item-desc">Ray tracing, lens systems, mirrors, aberrations, stops and pupils, and matrix methods. The foundation of how light travels through optical systems.</div>
+        <div><span class="cw-tag cw-tag-lecture">Lecture</span><span class="cw-tag cw-tag-lab">Lab</span></div>
+      </div>
+      <div class="cw-item reveal">
+        <div class="cw-item-title">Physical Optics</div>
+        <div class="cw-item-sub">Wave Optics</div>
+        <div class="cw-item-desc">Wave propagation, interference, diffraction, polarization, and coherence. Where light stops acting like rays and starts acting like waves.</div>
+        <div><span class="cw-tag cw-tag-lecture">Lecture</span><span class="cw-tag cw-tag-lab">Lab</span></div>
+      </div>
+      <div class="cw-item reveal">
+        <div class="cw-item-title">MATLAB for Engineers</div>
+        <div class="cw-item-sub">Computation</div>
+        <div class="cw-item-desc">Scripting, data analysis, signal processing, and visualization. The tool I use most for everything from homework to lab data.</div>
+        <div><span class="cw-tag cw-tag-lecture">Lecture</span></div>
+      </div>
+    </div>
+  </div>
+
   <!-- STAGE LIGHTING -->
   <div class="section-wrap" style="padding-top:0">
     <p class="s-label reveal">Stage Lighting</p>
@@ -325,7 +363,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
           <div class="poster-embed">
             <div class="poster-thumb">📄</div>
             <div><div class="poster-title">Levitated Quantum Optomechanics — Research Poster</div><div class="poster-sub">Fusco · Golus · Sabatini · Institute of Optics, University of Rochester · 2024</div></div>
-            <a href="#" class="poster-link" onclick="alert('Host your PDF and replace this link.');return false;">View Poster</a>
+            <a href="LevitatedQuantumOptomechanicsPosterFinal.pdf" target="_blank" class="poster-link">View Poster</a>
           </div>
         </div>
         <span class="proj-badge">UR Lab · 2024</span>
