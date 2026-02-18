@@ -333,13 +333,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       <div class="proj-item reveal">
         <div class="proj-num">02.</div>
         <div>
-          <h3 class="proj-title">High-CRI Tunable Smart Bulb — Concept and Simulation</h3>
-          <p class="proj-desc">A personal design project working on the core problem with most LED bulbs: they trade color quality and warmth for efficiency numbers. Using Zemax I modeled the light distribution optics and used MATLAB to simulate spectral output across a tunable CCT range of 2200K to 3000K while targeting CRI above 97. The thermal side involved analyzing heatsink geometry for a junction temperature under 65C at 50W. The end goal is a drop-in smart bulb that feels like a tungsten filament and responds to time of day.</p>
+          <h3 class="proj-title">Blackbody vs LED Spectrum Comparison — Interactive Tool</h3>
+          <p class="proj-desc">An interactive visualization I built to explore why most LED bulbs feel "off" compared to incandescent light. It uses Planck's law to generate real blackbody radiation curves at any color temperature and overlays a typical phosphor-converted LED spectrum for comparison. The spectral gaps — especially in the deep red — are immediately obvious and explain why high-CRI bulbs matter. Drag the slider to see how the ideal blackbody curve shifts with temperature.</p>
+          <div class="bb-tool" style="margin:24px 0;">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap;">
+              <label style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Color Temperature</label>
+              <input type="range" id="bb-temp" min="1800" max="6500" value="2700" step="100" style="flex:1;min-width:140px;accent-color:var(--teal);">
+              <span id="bb-temp-val" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--teal);min-width:60px;">2700 K</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
+              <div id="bb-swatch" style="width:36px;height:36px;border-radius:4px;border:1px solid var(--border);"></div>
+              <span id="bb-label" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.1em;">Warm White — typical incandescent</span>
+            </div>
+            <div style="position:relative;background:#05060b;border:1px solid var(--border);border-radius:4px;padding:12px;">
+              <canvas id="bb-chart" height="240"></canvas>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:20px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.08em;">
+              <span><span style="color:#ffbb55;">━</span> Blackbody (Planck's law)</span>
+              <span><span style="color:#5eead4;">━</span> Typical phosphor LED</span>
+              <span><span style="color:rgba(255,255,255,0.15);">█</span> Visible spectrum</span>
+            </div>
+          </div>
           <div class="proj-tags">
-            <span class="proj-tag">Zemax</span><span class="proj-tag">MATLAB</span><span class="proj-tag">LED Design</span><span class="proj-tag">CRI / CCT</span><span class="proj-tag">Thermal Analysis</span>
+            <span class="proj-tag">Planck's Law</span><span class="proj-tag">JavaScript</span><span class="proj-tag">Chart.js</span><span class="proj-tag">Color Science</span><span class="proj-tag">LED Spectral Analysis</span>
           </div>
         </div>
-        <span class="proj-badge">Personal · Ongoing</span>
+        <span class="proj-badge">Personal · 2025</span>
       </div>
     </div>
   </div>
@@ -354,7 +373,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       <div class="skill-box" data-s="82"><div class="skill-icon">∿</div><div class="skill-name">MATLAB</div><div class="skill-desc">Optical simulation, signal processing, data analysis, graphing</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
       <div class="skill-box" data-s="85"><div class="skill-icon">⊞</div><div class="skill-name">Excel</div><div class="skill-desc">Advanced data analysis and graphing, used professionally and in coursework</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
       <div class="skill-box" data-s="72"><div class="skill-icon">⟁</div><div class="skill-name">Python / Web Dev</div><div class="skill-desc">Full stack experience, scripting, automation, game development</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
-      <div class="skill-box" data-s="70"><div class="skill-icon">◎</div><div class="skill-name">LED Systems</div><div class="skill-desc">Driver design, CRI and CCT tuning, thermal management</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+      <div class="skill-box" data-s="70"><div class="skill-icon">◎</div><div class="skill-name">LED Systems</div><div class="skill-desc">Color science, spectral analysis, thermal management</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
       <div class="skill-box" data-s="65"><div class="skill-icon">◐</div><div class="skill-name">Geometrical Optics</div><div class="skill-desc">Ray tracing, lens systems, aberrations — completed lab coursework</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
       <div class="skill-box" data-s="58"><div class="skill-icon">≋</div><div class="skill-name">Physical Optics</div><div class="skill-desc">Wave optics, diffraction, interference — currently enrolled</div><div class="skill-bar"><div class="skill-fill"></div></div></div>
     </div>
@@ -556,7 +575,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   <div class="section-wrap" style="padding-top:140px;">
     <p class="s-label reveal">Recommended Videos</p>
     <h2 class="section-head reveal">Optics videos I <span class="grad-text">love.</span></h2>
-    <p class="res-intro reveal">I have such a niche major and there are so many good videos out there that make learning about optics fun and enjoyable. I've even used multiple of these Veritasium videos to help me with my homework. These are videos I genuinely recommend to anyone curious about light, color, and physics.</p>
+    <p class="res-intro reveal">Optical engineering is a pretty niche major, but there are so many incredible videos and resources out there that make learning about optics genuinely fun. Veritasium especially has a surprisingly high number of optics-related videos that are so well made I've even had professors show them in class — and I've used several to help me with my own homework. Beyond Veritasium, channels like 3Blue1Brown, ScienceClic, and Astrum do an amazing job breaking down the physics of light in ways that are visual and intuitive. These are videos and websites I keep coming back to and would recommend to anyone curious about light, color, and how we see the world.</p>
 
     <h3 class="res-channel reveal">Veritasium</h3>
     <div class="res-video-grid">
@@ -592,6 +611,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         <div class="res-embed"><iframe src="https://www.youtube.com/embed/NIk_0AW5hFU" title="There Is Something Faster Than Light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
         <div class="res-video-title">There Is Something Faster Than Light</div>
       </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/UAeJHAFjwPM" title="How Do Night Vision Goggles Work?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">How Do Night Vision Goggles Work?</div>
+      </div>
     </div>
 
     <h3 class="res-channel reveal">More Great Videos</h3>
@@ -603,6 +626,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       <div class="res-video-item reveal">
         <div class="res-embed"><iframe src="https://www.youtube.com/embed/7KYwi2F5Ce4" title="The Geometry of Colours" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
         <div class="res-video-title">The "Geometry" of Colours <span class="res-channel-tag">ScienceClic English</span></div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/QqY8fY0TqaQ" title="The 9 Experiments That Will Change Your View of Light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">The 9 Experiments That Will Change Your View of Light <span class="res-channel-tag">Astrum</span></div>
       </div>
     </div>
   </div>
@@ -968,6 +995,108 @@ function renderLens(){
     renderLens();
   });
   document.addEventListener('mouseup',function(){drag=null;});
+})();
+
+// Blackbody vs LED Spectrum Tool
+(function(){
+  var bbChart=null;
+  var slider=document.getElementById('bb-temp');
+  var valEl=document.getElementById('bb-temp-val');
+  var swatchEl=document.getElementById('bb-swatch');
+  var labelEl=document.getElementById('bb-label');
+  if(!slider)return;
+
+  function planck(lambda,T){
+    var h=6.626e-34,c=3e8,k=1.381e-23;
+    var l=lambda*1e-9;
+    return(2*h*c*c/Math.pow(l,5))/(Math.exp(h*c/(l*k*T))-1);
+  }
+
+  function ledSpectrum(lambda){
+    var blue=Math.exp(-Math.pow((lambda-450)/12,2))*0.7;
+    var phos=Math.exp(-Math.pow((lambda-580)/60,2))*1.0;
+    var red=Math.exp(-Math.pow((lambda-610)/30,2))*0.35;
+    return blue+phos+red;
+  }
+
+  function tempToRGB(T){
+    var t=T/100;var r,g,b;
+    if(t<=66){r=255;g=99.47*Math.log(t)-161.12;g=Math.max(0,Math.min(255,g));}
+    else{r=329.7*Math.pow(t-60,-0.1332);r=Math.max(0,Math.min(255,r));g=288.12*Math.pow(t-60,-0.0755);g=Math.max(0,Math.min(255,g));}
+    if(t>=66)b=255;else if(t<=19)b=0;else{b=138.52*Math.log(t-10)-305.04;b=Math.max(0,Math.min(255,b));}
+    return'rgb('+Math.round(r)+','+Math.round(g)+','+Math.round(b)+')';
+  }
+
+  function tempLabel(T){
+    if(T<=2200)return'Candlelight';
+    if(T<=2700)return'Warm White \u2014 typical incandescent';
+    if(T<=3000)return'Halogen';
+    if(T<=3500)return'Warm neutral';
+    if(T<=4100)return'Cool white \u2014 kitchen/office';
+    if(T<=5000)return'Bright neutral';
+    if(T<=5500)return'Noon daylight';
+    return'Overcast sky / cool daylight';
+  }
+
+  function wavelengthToRGB(wl){
+    var r=0,g=0,b=0;
+    if(wl>=380&&wl<440){r=-(wl-440)/(440-380);b=1;}
+    else if(wl>=440&&wl<490){g=(wl-440)/(490-440);b=1;}
+    else if(wl>=490&&wl<510){g=1;b=-(wl-510)/(510-490);}
+    else if(wl>=510&&wl<580){r=(wl-510)/(580-510);g=1;}
+    else if(wl>=580&&wl<645){r=1;g=-(wl-645)/(645-580);}
+    else if(wl>=645&&wl<=780){r=1;}
+    var f=1;if(wl>=380&&wl<420)f=0.3+0.7*(wl-380)/(420-380);
+    else if(wl>700&&wl<=780)f=0.3+0.7*(780-wl)/(780-700);
+    return'rgba('+Math.round(r*255*f)+','+Math.round(g*255*f)+','+Math.round(b*255*f)+',0.13)';
+  }
+
+  function drawBBChart(T){
+    var labels=[],bbData=[],ledData=[],bgColors=[];
+    var maxBB=0;
+    for(var w=380;w<=780;w+=5){
+      var v=planck(w,T);if(v>maxBB)maxBB=v;
+    }
+    var maxLED=0;
+    for(var w=380;w<=780;w+=5){
+      var v=ledSpectrum(w);if(v>maxLED)maxLED=v;
+    }
+    for(var w=380;w<=780;w+=5){
+      labels.push(w);
+      bbData.push(planck(w,T)/maxBB);
+      ledData.push(ledSpectrum(w)/maxLED);
+      bgColors.push(wavelengthToRGB(w));
+    }
+    var ctx=document.getElementById('bb-chart');
+    if(!ctx)return;
+    if(bbChart)bbChart.destroy();
+    bbChart=new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[
+      {type:'bar',data:bbData.map(function(){return 1;}),backgroundColor:bgColors,borderWidth:0,barPercentage:1,categoryPercentage:1,order:3},
+      {type:'line',label:'Blackbody',data:bbData,borderColor:'#ffbb55',borderWidth:2,pointRadius:0,fill:false,tension:0.3,order:1},
+      {type:'line',label:'LED',data:ledData,borderColor:'#5eead4',borderWidth:2,pointRadius:0,fill:false,tension:0.3,order:2}
+    ]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:200},scales:{
+      x:{title:{display:true,text:'Wavelength (nm)',color:'rgba(232,234,240,0.35)',font:{family:'IBM Plex Mono',size:10}},ticks:{color:'rgba(232,234,240,0.25)',font:{family:'IBM Plex Mono',size:9},maxTicksLimit:10},grid:{color:'rgba(255,255,255,0.04)'}},
+      y:{title:{display:true,text:'Relative Intensity',color:'rgba(232,234,240,0.35)',font:{family:'IBM Plex Mono',size:10}},ticks:{display:false},grid:{color:'rgba(255,255,255,0.04)'},min:0,max:1.1}
+    },plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  }
+
+  function update(){
+    var T=parseInt(slider.value);
+    valEl.textContent=T+' K';
+    swatchEl.style.background=tempToRGB(T);
+    labelEl.textContent=tempLabel(T);
+    drawBBChart(T);
+  }
+
+  slider.addEventListener('input',update);
+  var obs=new MutationObserver(function(){
+    if(document.getElementById('pg-home').classList.contains('active')){
+      setTimeout(update,150);
+      obs.disconnect();
+    }
+  });
+  obs.observe(document.getElementById('pg-home'),{attributes:true});
+  setTimeout(update,300);
 })();
 
 </script>
