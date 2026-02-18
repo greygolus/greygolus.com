@@ -160,7 +160,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* RESOURCES */
 .res-intro{font-size:17px;font-weight:300;color:var(--muted);line-height:1.85;max-width:700px;margin-bottom:48px;}
 .res-channel{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid rgba(167,139,250,0.15);}
-.res-video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:52px;}
+.res-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:52px;}
 .res-video-item{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .22s,box-shadow .22s;}
 .res-video-item:hover{border-color:rgba(94,234,212,0.25);box-shadow:0 4px 24px rgba(0,0,0,0.3);}
 .res-embed{position:relative;width:100%;padding-bottom:56.25%;background:#000;}
@@ -168,7 +168,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .res-video-title{padding:14px 16px;font-size:13px;font-weight:400;color:var(--text);line-height:1.5;}
 .res-channel-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--teal);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.15);padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle;}
 .res-sites-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:32px;}
-.res-site-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:32px;transition:border-color .22s,box-shadow .22s,transform .22s;text-decoration:none;display:block;}
+.res-site-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .22s,box-shadow .22s,transform .22s;text-decoration:none;display:block;}
+.res-site-img{width:100%;height:180px;object-fit:cover;display:block;border-bottom:1px solid var(--border);}
+.res-site-body{padding:28px 32px;}
 .res-site-card:hover{border-color:rgba(167,139,250,0.3);box-shadow:0 4px 24px rgba(0,0,0,0.3);transform:translateY(-2px);}
 .res-site-name{font-size:20px;font-weight:600;color:var(--text);margin-bottom:12px;}
 .res-site-desc{font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:16px;}
@@ -184,7 +186,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   .lens-controls{grid-template-columns:repeat(2,1fr);}
   .footer-bar{flex-direction:column;gap:8px;padding:20px;}
   .hero-btns{flex-direction:column;}
-  .res-video-grid,.res-sites-grid{grid-template-columns:1fr;}
+  .res-video-grid{grid-template-columns:repeat(2,1fr);}
+  .res-sites-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -573,6 +576,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         <div class="res-embed"><iframe src="https://www.youtube.com/embed/V9K6gjR07Po" title="What if you could only see the world in UV?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
         <div class="res-video-title">What if you could only see the world in UV?</div>
       </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/Q10_srZ-pbs" title="The Closest We've Come to a Theory of Everything" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">The Closest We've Come to a Theory of Everything</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/qJZ1Ez28C-A" title="Something Strange Happens When You Trust Quantum Mechanics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">Something Strange Happens When You Trust Quantum Mechanics</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/lcjdwSY2AzM" title="The Biggest Misconception in Physics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">The Biggest Misconception in Physics</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/NIk_0AW5hFU" title="There Is Something Faster Than Light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">There Is Something Faster Than Light</div>
+      </div>
     </div>
 
     <h3 class="res-channel reveal">More Great Videos</h3>
@@ -593,14 +612,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
     <h2 class="section-head reveal">Interactive <span class="grad-text">resources.</span></h2>
     <div class="res-sites-grid">
       <a href="https://www.color-in-color.info/" target="_blank" class="res-site-card reveal">
-        <div class="res-site-name">Color in Color</div>
-        <div class="res-site-desc">All about color vision and beyond interesting — it makes learning about all the differing things about color vision so engaging and interactive.</div>
-        <div class="res-site-link">color-in-color.info</div>
+        <img class="res-site-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0STNVRJk2q98qK6KxfUypZimmWfTX9lvziAIBwWZjIiXo5OibRp16P_tghN-DwNDK06_wk8RvihMu6ZUJTuX4o6dBBxSLKFhZPVed1KIJWdrSas_5i-1kkl0Skal9nvqOCZi2IUX9eEGXIbuLyZgNaJmApmkecIVLnz_1HrnlCRYNKcEJOMBk3BS-Ss=w16383" alt="Color in Color preview">
+        <div class="res-site-body">
+          <div class="res-site-name">Color in Color</div>
+          <div class="res-site-desc">All about color vision and beyond interesting — it makes learning about all the differing things about color vision so engaging and interactive.</div>
+          <div class="res-site-link">color-in-color.info</div>
+        </div>
       </a>
       <a href="https://phydemo.app/ray-optics/simulator/" target="_blank" class="res-site-card reveal">
-        <div class="res-site-name">Ray Optics Simulator</div>
-        <div class="res-site-desc">A fun geometrical optics simulator — play around with it and see how different lenses and optical elements interact with each other.</div>
-        <div class="res-site-link">phydemo.app/ray-optics</div>
+        <img class="res-site-img" src="https://phydemo.app/ray-optics/gallery/chromatic-dispersion.jpg" alt="Ray Optics Simulator preview">
+        <div class="res-site-body">
+          <div class="res-site-name">Ray Optics Simulator</div>
+          <div class="res-site-desc">A fun geometrical optics simulator — play around with it and see how different lenses and optical elements interact with each other.</div>
+          <div class="res-site-link">phydemo.app/ray-optics</div>
+        </div>
       </a>
     </div>
   </div>
