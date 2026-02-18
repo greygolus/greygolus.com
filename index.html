@@ -157,6 +157,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 #lens-canvas{display:block;width:100%;}
 .lens-hint{position:absolute;bottom:8px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.1em;}
 .lens-metrics{background:rgba(94,234,212,0.05);border:1px solid rgba(94,234,212,0.15);border-radius:2px;padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);line-height:1.9;min-height:60px;margin-top:12px;}
+/* RESOURCES */
+.res-intro{font-size:17px;font-weight:300;color:var(--muted);line-height:1.85;max-width:700px;margin-bottom:48px;}
+.res-channel{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid rgba(167,139,250,0.15);}
+.res-video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:52px;}
+.res-video-item{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .22s,box-shadow .22s;}
+.res-video-item:hover{border-color:rgba(94,234,212,0.25);box-shadow:0 4px 24px rgba(0,0,0,0.3);}
+.res-embed{position:relative;width:100%;padding-bottom:56.25%;background:#000;}
+.res-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
+.res-video-title{padding:14px 16px;font-size:13px;font-weight:400;color:var(--text);line-height:1.5;}
+.res-channel-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--teal);background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.15);padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle;}
+.res-sites-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:32px;}
+.res-site-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:32px;transition:border-color .22s,box-shadow .22s,transform .22s;text-decoration:none;display:block;}
+.res-site-card:hover{border-color:rgba(167,139,250,0.3);box-shadow:0 4px 24px rgba(0,0,0,0.3);transform:translateY(-2px);}
+.res-site-name{font-size:20px;font-weight:600;color:var(--text);margin-bottom:12px;}
+.res-site-desc{font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:16px;}
+.res-site-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--teal);}
 @media(max-width:960px){
   nav{padding:18px 20px;}
   .hero,.about-section,.section-wrap,.contact-section,.tools-hero{padding-left:20px;padding-right:20px;}
@@ -168,6 +184,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   .lens-controls{grid-template-columns:repeat(2,1fr);}
   .footer-bar{flex-direction:column;gap:8px;padding:20px;}
   .hero-btns{flex-direction:column;}
+  .res-video-grid,.res-sites-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -178,6 +195,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   <div class="nav-logo">Grey Golus</div>
   <div class="nav-links">
     <button class="nav-btn active" onclick="showPage('home')">Home</button>
+    <button class="nav-btn" onclick="showPage('resources')">Resources</button>
     <button class="nav-btn" onclick="showPage('tools')">Optics Tools</button>
   </div>
 </nav>
@@ -529,12 +547,77 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   </div>
   <div class="footer-bar"><span>Grey Golus · Optical Engineering Toolbox</span><span>University of Rochester · Institute of Optics</span></div>
 </div>
+
+<!-- RESOURCES PAGE -->
+<div id="pg-resources" class="page">
+  <div class="section-wrap" style="padding-top:140px;">
+    <p class="s-label reveal">Recommended Videos</p>
+    <h2 class="section-head reveal">Optics videos I <span class="grad-text">love.</span></h2>
+    <p class="res-intro reveal">I have such a niche major and there are so many good videos out there that make learning about optics fun and enjoyable. I've even used multiple of these Veritasium videos to help me with my homework. These are videos I genuinely recommend to anyone curious about light, color, and physics.</p>
+
+    <h3 class="res-channel reveal">Veritasium</h3>
+    <div class="res-video-grid">
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/AF8d72mA41M" title="Why It Was Almost Impossible to Make the Blue LED" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">Why It Was Almost Impossible to Make the Blue LED</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/nfAqTSjMBJk" title="What Jumping Spiders Teach Us About Color" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">What Jumping Spiders Teach Us About Color</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/24GfgNtnjXc" title="What They (Probably) Don't Teach You About Rainbows At School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">What They (Probably) Don't Teach You About Rainbows At School</div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/V9K6gjR07Po" title="What if you could only see the world in UV?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">What if you could only see the world in UV?</div>
+      </div>
+    </div>
+
+    <h3 class="res-channel reveal">More Great Videos</h3>
+    <div class="res-video-grid">
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/aXRTczANuIs" title="How wiggling charges give rise to light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">How wiggling charges give rise to light <span class="res-channel-tag">3Blue1Brown</span></div>
+      </div>
+      <div class="res-video-item reveal">
+        <div class="res-embed"><iframe src="https://www.youtube.com/embed/7KYwi2F5Ce4" title="The Geometry of Colours" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="res-video-title">The "Geometry" of Colours <span class="res-channel-tag">ScienceClic English</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap" style="padding-top:0;">
+    <p class="s-label reveal">Websites &amp; Tools</p>
+    <h2 class="section-head reveal">Interactive <span class="grad-text">resources.</span></h2>
+    <div class="res-sites-grid">
+      <a href="https://www.color-in-color.info/" target="_blank" class="res-site-card reveal">
+        <div class="res-site-name">Color in Color</div>
+        <div class="res-site-desc">All about color vision and beyond interesting — it makes learning about all the differing things about color vision so engaging and interactive.</div>
+        <div class="res-site-link">color-in-color.info</div>
+      </a>
+      <a href="https://phydemo.app/ray-optics/simulator/" target="_blank" class="res-site-card reveal">
+        <div class="res-site-name">Ray Optics Simulator</div>
+        <div class="res-site-desc">A fun geometrical optics simulator — play around with it and see how different lenses and optical elements interact with each other.</div>
+        <div class="res-site-link">phydemo.app/ray-optics</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bar"><span>Grey Golus · Optics Resources</span><span>University of Rochester · Institute of Optics</span></div>
+</div>
+
 <script>
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('pg-'+id).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>{
-    b.classList.toggle('active',id==='home'?b.textContent.includes('Home'):b.textContent.includes('Tool'));
+    var match=false;
+    if(id==='home')match=b.textContent.includes('Home');
+    else if(id==='resources')match=b.textContent.includes('Resources');
+    else if(id==='tools')match=b.textContent.includes('Tool');
+    b.classList.toggle('active',match);
   });
   window.scrollTo(0,0);
   if(id==='tools')setTimeout(function(){plotBB();plotSweep();renderLens();},100);
