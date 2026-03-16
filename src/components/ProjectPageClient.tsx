@@ -12,13 +12,16 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Force scroll to top on navigation
+    window.scrollTo(0, 0);
+
     if (project && heroRef.current) {
       gsap.fromTo(heroRef.current, 
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1.5, ease: "power3.out", delay: 0.2 }
       );
     }
-  }, [project]);
+  }, [project, slug]);
 
   if (!project) {
     return (
@@ -75,35 +78,73 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       </section>
 
       {/* Massive Gradient Banner representing the project */}
-      <section className="w-full h-[60vh] relative overflow-hidden mb-24">
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-40 mix-blend-screen`}></div>
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] text-white/5 whitespace-nowrap tracking-tighter pointer-events-none">
-          {project.title.substring(0, 10)}...
-        </div>
-      </section>
+      {/* Hide for projects where we have real photos or requested removal */}
+      {!['quantum', 'stage-lighting', 'blackbody-led'].includes(slug) && (
+        <section className="w-full h-[60vh] relative overflow-hidden mb-24">
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-40 mix-blend-screen`}></div>
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] text-white/5 whitespace-nowrap tracking-tighter pointer-events-none">
+            {project.title.substring(0, 10)}...
+          </div>
+        </section>
+      )}
 
-      {/* Project Content */}
-      <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-16">
-        {/* Main Project Image */}
-        {project.image && (
-          <div className="w-full relative overflow-hidden border border-white/10 group cursor-crosshair">
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
-            />
+      {/* Project Content - Media First */}
+      <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24">
+        
+        {/* Quantum Specialized Carousel */}
+        {slug === 'quantum' && project.gallery && (
+          <div className="w-full flex flex-col gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {project.gallery.map((item: any, i: number) => {
+                const isUnsupported = item.src.toLowerCase().endsWith('.heic') || item.src.toLowerCase().endsWith('.pptx');
+                
+                return (
+                  <div key={i} className="flex flex-col gap-4 group">
+                    <div className="w-full aspect-square relative overflow-hidden border border-white/10 bg-white/5">
+                      {isUnsupported ? (
+                        <a 
+                          href={item.src}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="absolute inset-0 flex flex-col items-center justify-center hover:bg-white/5 transition-colors group/link"
+                        >
+                          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-silver/40 group-hover/link:text-cyan transition-colors mb-4">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                          </svg>
+                          <span className="text-[10px] uppercase tracking-widest text-silver/60 group-hover/link:text-cyan transition-colors">
+                            {item.src.split('.').pop()} FILE
+                          </span>
+                        </a>
+                      ) : (
+                        <img 
+                          src={item.src} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
+                        />
+                      )}
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-silver/40 italic">
+                      {item.caption}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
-        <p className="max-w-3xl">
-          {project.content}
-        </p>
+        {/* Blackbody Simulation (Above Text) */}
+        {slug === 'blackbody-led' && (
+          <div className="w-full">
+            <BlackbodySimulation />
+          </div>
+        )}
 
-        {/* Additional Project Gallery */}
+        {/* Standard Gallery (Above Text) */}
         {project.images && project.images.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {project.images.map((img: string, i: number) => {
               const isPdf = img.toLowerCase().endsWith('.pdf');
               
@@ -146,25 +187,26 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
           </div>
         )}
 
-        {slug === 'blackbody-led' && (
-          <div className="w-full my-8">
-            <BlackbodySimulation />
-          </div>
-        )}
+        {/* Project Description (Now at bottom) */}
+        <div className="flex flex-col gap-8">
+          <p className="max-w-3xl text-lg text-silver/90">
+            {project.content}
+          </p>
 
-        {project.link && (
-          <div>
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="inline-block px-8 py-4 border border-white/20 hover:border-cyan/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 font-mono text-xs uppercase tracking-[0.2em] text-cyan hover:text-white group relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-cyan/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
-              <span className="relative z-10">{project.linkText || 'Launch Application →'}</span>
-            </a>
-          </div>
-        )}
+          {project.link && (
+            <div>
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-block px-8 py-4 border border-white/20 hover:border-cyan/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 font-mono text-xs uppercase tracking-[0.2em] text-cyan hover:text-white group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-cyan/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
+                <span className="relative z-10">{project.linkText || 'Launch Application →'}</span>
+              </a>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Next Project Footer Block */}

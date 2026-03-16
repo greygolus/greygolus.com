@@ -5,11 +5,16 @@ export const projectData: Record<string, any> = {
     content: "A 100nm silica particle levitated by a 1064nm laser in a high-vacuum chamber and cooled toward its motional ground state. We modulated beam polarization through two EOMs to control coupling between the X and Y vibrational modes, then used a 532nm probe beam and a photodiode bridge to measure the motion signal. After converting voltage data to mean phonon number we could clearly see the Rabi oscillation — energy cycling between modes at roughly 10kHz. The system acts as a semiclassical analog to a qubit.",
     link: "https://greygolus.com/LevitatedQuantumOptomechanicsPosterFinal.pdf",
     linkText: "View Poster",
-    image: "/projects/quantum.png",
-    images: ["/projects/quantum-poster.pdf"],
+    gallery: [
+      { src: "/projects/vacuum-chamber-side.HEIC", caption: "A side view of the high-vacuum chamber where the silica particle is levitated." },
+      { src: "/projects/vacuum-chamber-top.HEIC", caption: "Top-down view of the experimental setup showing the laser entry and detection ports." },
+      { src: "/projects/alignment-system.HEIC", caption: "The custom alignment system used to stabilize the laser trapping beam." },
+      { src: "/projects/levitating-particle.jpg", caption: "An image of the actual 100nm silica particle held in the optical trap." },
+      { src: "/projects/system-diagram.pptx", caption: "Detailed schematic diagram of the optical path and detection bridge." }
+    ],
     year: "2024",
     role: "Student Researcher",
-    tech: ["MATLAB", "Data Analysis", "Quantum Physics"],
+    tech: ["MATLAB", "Quantum Physics", "Laser Diagnostics"],
     accent: "from-purple-500 to-indigo-900"
   },
   "thin-lens": {
@@ -35,20 +40,18 @@ export const projectData: Record<string, any> = {
     accent: "from-cyan-500 to-blue-900"
   },
   "blackbody-led": {
-    title: "Blackbody vs LED",
-    description: "An interactive visualization exploring the spectral gaps between real blackbody radiation and LED.",
-    content: "An interactive visualization I built to explore why most LED bulbs feel 'off' compared to incandescent light. It uses Planck's law to generate real blackbody radiation curves at any color temperature and overlays a typical phosphor-converted LED spectrum for comparison. The spectral gaps — especially in the deep red — are immediately obvious and explain why high-CRI bulbs matter. Drag the slider to see how the ideal blackbody curve shifts with temperature.",
-    image: "/projects/blackbody.png",
+    title: "Blackbody LED",
+    description: "Computational model of a white light LED source following Planckian locus.",
+    content: "An exploration into the spectral power distribution of light sources. I developed a model to find the necessary intensities of multi-color LED chips to simulate a blackbody source at various correlated color temperatures (CCT). The simulation calculates the chromaticity coordinates and optimizes the mixture to stay as close to the Planckian locus as possible while maintaining a high Color Rendering Index (CRI). Truly 'white' light is harder to make than it looks.",
     year: "2024",
-    role: "Color Scientist",
-    tech: ["Chart.js", "Spectrometry", "Color Science"],
+    role: "Optical Engineer",
+    tech: ["MATLAB", "Color Theory", "Radiometry"],
     accent: "from-orange-500 to-red-900"
   },
   "stage-lighting": {
     title: "Stage Lighting",
     description: "Theatrical lighting design focusing on color theory for 'Sunecho 3'.",
     content: "I did backstage work throughout high school and later took a stage lighting course at Rochester. This photo is from that class — I designed a lighting scene to recreate the feeling of Sunecho 3 by LJ Altvater using the fixtures available in the theater. Getting the green UV glow on the geometric set pieces, the purple atmosphere wash, and the warm center panel to work together was a real exercise in color mixing and beam control. The same principles that make optical systems work just applied to an audience instead of a detector.",
-    image: "/projects/stagelighting.png",
     images: ["/projects/stage-lighting-ref.JPG", "/projects/stage-lighting-still.JPG"],
     year: "2024",
     role: "Lighting Designer",
