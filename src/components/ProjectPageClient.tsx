@@ -92,45 +92,38 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       {/* Project Content - Media First */}
       <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24">
         
-        {/* Quantum Specialized Carousel */}
+        {/* Quantum Specialized Slideshow */}
         {slug === 'quantum' && project.gallery && (
-          <div className="w-full flex flex-col gap-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {project.gallery.map((item: any, i: number) => {
-                const isUnsupported = item.src.toLowerCase().endsWith('.heic') || item.src.toLowerCase().endsWith('.pptx');
-                
-                return (
-                  <div key={i} className="flex flex-col gap-4 group">
-                    <div className="w-full aspect-square relative overflow-hidden border border-white/10 bg-white/5">
-                      {isUnsupported ? (
-                        <a 
-                          href={item.src}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="absolute inset-0 flex flex-col items-center justify-center hover:bg-white/5 transition-colors group/link"
-                        >
-                          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-silver/40 group-hover/link:text-cyan transition-colors mb-4">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                          </svg>
-                          <span className="text-[10px] uppercase tracking-widest text-silver/60 group-hover/link:text-cyan transition-colors">
-                            {item.src.split('.').pop()} FILE
-                          </span>
-                        </a>
-                      ) : (
-                        <img 
-                          src={item.src} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
-                        />
-                      )}
+          <div className="w-full flex flex-col gap-8">
+            <div className="relative group/carousel">
+              <div 
+                className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-4"
+                style={{ scrollbarWidth: 'none' }}
+              >
+                {project.gallery.map((item: any, i: number) => (
+                  <div key={i} className="min-w-[80%] md:min-w-[60%] lg:min-w-[50%] snap-center flex flex-col gap-6">
+                    <div className="w-full aspect-[4/3] relative overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
+                      <img 
+                        src={item.src} 
+                        alt={item.caption} 
+                        className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-all duration-700" 
+                      />
                     </div>
-                    <p className="text-[11px] leading-relaxed text-silver/40 italic">
-                      {item.caption}
-                    </p>
+                    <div className="flex gap-4 items-start px-2">
+                      <span className="font-mono text-[10px] text-cyan/40 mt-1">0{i+1}</span>
+                      <p className="text-xs md:text-sm leading-relaxed text-silver/60 italic font-mono uppercase tracking-wider">
+                        {item.caption}
+                      </p>
+                    </div>
                   </div>
-                );
-              })}
+                ))}
+              </div>
+              
+              {/* Layout Hint */}
+              <div className="flex justify-between items-center mt-8 font-mono text-[10px] uppercase tracking-[0.2em] text-silver/20">
+                <span>&larr; Swipe to view experiments</span>
+                <span>{project.gallery.length} Images</span>
+              </div>
             </div>
           </div>
         )}
