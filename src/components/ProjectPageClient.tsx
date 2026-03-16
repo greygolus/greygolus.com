@@ -87,7 +87,9 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       </section>
 
       {/* Project Content - Media First */}
-      <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24">
+      <section className={`px-6 lg:px-24 mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24 ${
+        slug === 'stage-lighting' ? 'max-w-[1600px]' : 'max-w-[1200px]'
+      }`}>
         
         {/* Main Project Image (AI Banners for Interferometer/Thin Lens) */}
         {project.image && !['quantum', 'stage-lighting', 'blackbody-led'].includes(slug) && (
@@ -142,7 +144,12 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
 
         {/* Standard Gallery (Above Text) */}
         {project.images && project.images.length > 0 && (
-          <div className={`grid gap-12 ${slug === 'stage-lighting' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'}`}>
+          <div className="w-full">
+            <div className={`grid gap-6 md:gap-12 ${
+              slug === 'stage-lighting' 
+                ? 'grid-cols-1 md:grid-cols-2' 
+                : 'grid-cols-1 md:grid-cols-2'
+            }`}>
             {project.images.map((img: string, i: number) => {
               const isPdf = img.toLowerCase().endsWith('.pdf');
               
