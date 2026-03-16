@@ -92,38 +92,39 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       {/* Project Content - Media First */}
       <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24">
         
-        {/* Quantum Specialized Slideshow */}
+        {/* Main Project Image (AI Banners for Interferometer/Thin Lens) */}
+        {project.image && !['quantum', 'stage-lighting', 'blackbody-led'].includes(slug) && (
+          <div className="w-full relative overflow-hidden border border-white/10 group">
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all duration-700" 
+            />
+          </div>
+        )}
+
+        {/* Quantum Specialized Grid Gallery */}
         {slug === 'quantum' && project.gallery && (
-          <div className="w-full flex flex-col gap-8">
-            <div className="relative group/carousel">
-              <div 
-                className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-4"
-                style={{ scrollbarWidth: 'none' }}
-              >
-                {project.gallery.map((item: any, i: number) => (
-                  <div key={i} className="min-w-[80%] md:min-w-[60%] lg:min-w-[50%] snap-center flex flex-col gap-6">
-                    <div className="w-full aspect-[4/3] relative overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
-                      <img 
-                        src={item.src} 
-                        alt={item.caption} 
-                        className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-all duration-700" 
-                      />
-                    </div>
-                    <div className="flex gap-4 items-start px-2">
-                      <span className="font-mono text-[10px] text-cyan/40 mt-1">0{i+1}</span>
-                      <p className="text-xs md:text-sm leading-relaxed text-silver/60 italic font-mono uppercase tracking-wider">
-                        {item.caption}
-                      </p>
-                    </div>
+          <div className="w-full flex flex-col gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {project.gallery.map((item: any, i: number) => (
+                <div key={i} className={`flex flex-col gap-4 group ${i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+                  <div className="w-full aspect-[16/9] md:aspect-auto md:h-80 relative overflow-hidden border border-white/10 bg-white/5">
+                    <img 
+                      src={item.src} 
+                      alt={item.caption} 
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
+                    />
                   </div>
-                ))}
-              </div>
-              
-              {/* Layout Hint */}
-              <div className="flex justify-between items-center mt-8 font-mono text-[10px] uppercase tracking-[0.2em] text-silver/20">
-                <span>&larr; Swipe to view experiments</span>
-                <span>{project.gallery.length} Images</span>
-              </div>
+                  <div className="flex gap-3 items-start px-1">
+                    <span className="font-mono text-[10px] text-cyan/40 mt-1">0{i+1}</span>
+                    <p className="text-[11px] md:text-xs leading-relaxed text-silver/50 italic font-mono uppercase tracking-wider">
+                      {item.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
