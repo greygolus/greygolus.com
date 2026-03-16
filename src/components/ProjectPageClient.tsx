@@ -85,6 +85,7 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
 
       {/* Project Content */}
       <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-16">
+        {/* Main Project Image */}
         {project.image && (
           <div className="w-full relative overflow-hidden border border-white/10 group cursor-crosshair">
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
@@ -99,6 +100,21 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
         <p className="max-w-3xl">
           {project.content}
         </p>
+
+        {/* Additional Project Gallery */}
+        {project.images && project.images.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+            {project.images.map((img: string, i: number) => (
+              <div key={i} className="w-full relative overflow-hidden border border-white/5 group bg-white/5">
+                <img 
+                  src={img} 
+                  alt={`${project.title} galley ${i + 1}`} 
+                  className="w-full h-auto object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         {slug === 'blackbody-led' && (
           <div className="w-full my-8">
