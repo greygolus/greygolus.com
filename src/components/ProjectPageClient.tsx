@@ -78,16 +78,13 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       </section>
 
       {/* Massive Gradient Banner representing the project */}
-      {/* Hide for projects where we have real photos or requested removal */}
-      {!['quantum', 'stage-lighting', 'blackbody-led'].includes(slug) && (
-        <section className="w-full h-[60vh] relative overflow-hidden mb-24">
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-40 mix-blend-screen`}></div>
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] text-white/5 whitespace-nowrap tracking-tighter pointer-events-none">
-            {project.title.substring(0, 10)}...
-          </div>
-        </section>
-      )}
+      <section className="w-full h-[60vh] relative overflow-hidden mb-24">
+        <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-40 mix-blend-screen`}></div>
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] text-white/5 whitespace-nowrap tracking-tighter pointer-events-none">
+          {project.title.substring(0, 10)}...
+        </div>
+      </section>
 
       {/* Project Content - Media First */}
       <section className="px-6 lg:px-24 max-w-[1200px] mx-auto font-mono text-sm md:text-base text-silver/80 leading-loose flex flex-col gap-24">

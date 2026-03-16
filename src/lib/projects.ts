@@ -2,12 +2,12 @@ export const projectData: Record<string, any> = {
   "quantum": {
     title: "Quantum Optomechanics",
     description: "Research on levitated nanoparticles cooled toward their motional ground state.",
-    content: "A 100nm silica particle levitated by a 1064nm laser in a high-vacuum chamber and cooled toward its motional ground state. We modulated beam polarization through two EOMs to control coupling between the X and Y vibrational modes, then used a 532nm probe beam and a photodiode bridge to measure the motion signal. After converting voltage data to mean phonon number we could clearly see the Rabi oscillation — energy cycling between modes at roughly 10kHz. The system acts as a semiclassical analog to a qubit.",
+    content: "A 100nm silica particle is levitated by a 1064nm laser within a high vacuum environment. The goal is to cool the motional state toward its ground level. We use two Electro Optic Modulators to control beam polarization and coupled vibrational modes. A separate 532nm probe beam passes through a photodiode bridge to record motion signals. I then convert voltage data into phonon counts to observe Rabi oscillations. This system serves as a macroscopic analog for a quantum bit.",
     link: "/projects/quantum-poster.pdf",
     linkText: "View Poster",
     gallery: [
-      { src: "/projects/quantum/quantum-1.jpg", caption: "A side view of the high-vacuum chamber where the silica particle is levitated." },
-      { src: "/projects/quantum/quantum-2.jpg", caption: "Top-down view of the experimental setup showing the laser entry and detection ports." },
+      { src: "/projects/quantum/quantum-1.jpg", caption: "A side view of the high vacuum chamber where the silica particle is levitated." },
+      { src: "/projects/quantum/quantum-2.jpg", caption: "Top down view of the experimental setup showing the laser entry and detection ports." },
       { src: "/projects/quantum/quantum-3.jpg", caption: "The custom alignment system used to stabilize the laser trapping beam." },
       { src: "/projects/quantum/quantum-4.jpg", caption: "An image of the actual 100nm silica particle held in the optical trap." },
       { src: "/projects/quantum/quantum-5.jpg", caption: "Detailed schematic diagram of the optical path and detection bridge." }
@@ -20,7 +20,7 @@ export const projectData: Record<string, any> = {
   "thin-lens": {
     title: "Thin Lens Guide",
     description: "A mathematical visualization tool for paraxial ray tracing and imaging equations.",
-    content: "Built during my second year to help students visualize how principal planes and focal points shift in complex multi-element systems. It uses paraxial approximations to calculate magnification and image positions in real-time. By moving the object slider, users can see the 'Gausian' versus 'Newtonian' representations of the system, helping build an intuitive feel for how light behaves before jumping into heavy Zemax simulations.",
+    content: "This tool provides a mathematical visualization for paraxial ray tracing and standard imaging equations. It was developed to help students understand how principal planes and focal points behave in multi element systems. Users can manipulate an object slider to see the differences between Gaussian and Newtonian representations. This helps build an intuition for light behavior before transitioning to complex simulation software.",
     link: "https://thin.greygolus.com",
     image: "/projects/thinlens.png",
     year: "2025-2026",
@@ -29,9 +29,9 @@ export const projectData: Record<string, any> = {
     accent: "from-emerald-500 to-teal-900"
   },
   "interferometer": {
-    title: "Michelson Interferometer",
+    title: "Interferometry",
     description: "Analysis of interference patterns to measure the wavelength of laboratory lasers.",
-    content: "A deep dive into the classic Michelson-Morley setup. I automated the fringe counting process using a CCD camera and a custom Python script, reducing measurement error for our HeNe laser wavelength down to ±0.2nm. The project involved fine-tuning mirror alignment to achieve 'circular' fringes and analyzing how air pressure fluctuations in the lab created detectable phase shifts. It’s a perfect example of how sensitive optical measurements can be.",
+    content: "This project involves a deep analysis of interference patterns to determine laboratory laser wavelengths. I developed a system to automate fringe counting using a CCD camera and custom software. This approach reduced measurement error for our Helium Neon source significantly. The work required precise alignment of mirror systems to produce stable circular fringes while monitoring phase shifts caused by air pressure changes.",
     link: "https://sim.greygolus.com",
     image: "/projects/interferometer.png",
     year: "2025-2026",
@@ -42,7 +42,7 @@ export const projectData: Record<string, any> = {
   "blackbody-led": {
     title: "Blackbody LED",
     description: "Computational model of a white light LED source following Planckian locus.",
-    content: "An exploration into the spectral power distribution of light sources. I developed a model to find the necessary intensities of multi-color LED chips to simulate a blackbody source at various correlated color temperatures (CCT). The simulation calculates the chromaticity coordinates and optimizes the mixture to stay as close to the Planckian locus as possible while maintaining a high Color Rendering Index (CRI). Truly 'white' light is harder to make than it looks.",
+    content: "This is a computational model for white light LED sources designed to follow the Planckian locus. I created an algorithm to determine the intensities for multi color LED chips needed to simulate blackbody radiation at specific color temperatures. The simulation calculates chromaticity coordinates and optimizes the spectral mixture. This ensures the output maintains a high Color Rendering Index while staying close to the ideal curve.",
     year: "2025-2026",
     role: "Optical Engineer",
     tech: ["MATLAB", "Color Theory", "Radiometry"],
@@ -50,8 +50,8 @@ export const projectData: Record<string, any> = {
   },
   "stage-lighting": {
     title: "Stage Lighting",
-    description: "Theatrical lighting design focusing on color theory for 'Sunecho 3'.",
-    content: "I did backstage work throughout high school and later took a stage lighting course at Rochester. This photo is from that class — I designed a lighting scene to recreate the feeling of Sunecho 3 by LJ Altvater using the fixtures available in the theater. Getting the green UV glow on the geometric set pieces, the purple atmosphere wash, and the warm center panel to work together was a real exercise in color mixing and beam control. The same principles that make optical systems work just applied to an audience instead of a detector.",
+    description: "Theatrical lighting design focusing on color theory for Sunecho 3.",
+    content: "This work applies theatrical lighting design principles to explore color theory. The scene was designed to recreate the specific atmosphere of Sunecho 3 by LJ Altvater. I utilized theater fixtures to balance a green UV glow on geometric set pieces with a purple environment wash. This required precise exercise in color mixing and beam control. These optical principles apply to an audience just as they would to a scientific detector.",
     images: ["/projects/stage-lighting-ref.JPG", "/projects/stage-lighting-still.JPG"],
     year: "2024",
     role: "Lighting Designer",
