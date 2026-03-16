@@ -109,16 +109,23 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
           <div className="w-full flex flex-col gap-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {project.gallery.map((item: any, i: number) => (
-                <div key={i} className={`flex flex-col gap-4 group ${i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
-                  <div className="w-full aspect-[16/9] md:aspect-auto md:h-80 relative overflow-hidden border border-white/10 bg-white/5">
+                <div key={i} className={`flex flex-col gap-4 group ${
+                  i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : 
+                  i === 4 ? 'md:col-span-2 lg:col-span-3' : ''
+                }`}>
+                  <div className={`w-full relative overflow-hidden border border-white/10 bg-white/5 ${
+                    i === 4 ? 'aspect-auto' : 'aspect-[16/9] md:aspect-auto md:h-80'
+                  }`}>
                     <img 
                       src={item.src} 
                       alt={item.caption} 
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
+                      className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 ${
+                        i === 4 ? 'object-contain bg-white/5' : 'object-cover'
+                      }`} 
                     />
                   </div>
-                  <div className="flex gap-3 items-start px-1">
-                    <span className="font-mono text-[10px] text-cyan/40 mt-1">0{i+1}</span>
+                  <div className="flex gap-4 items-start px-2">
+                    <span className="font-mono text-[10px] text-cyan/40 mt-1 min-w-[1.5rem]">0{i+1}</span>
                     <p className="text-[11px] md:text-xs leading-relaxed text-silver/50 italic font-mono uppercase tracking-wider">
                       {item.caption}
                     </p>
