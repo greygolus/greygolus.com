@@ -142,7 +142,7 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
 
         {/* Standard Gallery (Above Text) */}
         {project.images && project.images.length > 0 && (
-          <div className={`grid gap-12 ${slug === 'stage-lighting' ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
+          <div className={`grid gap-12 ${slug === 'stage-lighting' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'}`}>
             {project.images.map((img: string, i: number) => {
               const isPdf = img.toLowerCase().endsWith('.pdf');
               

@@ -52,7 +52,7 @@ export const projectData: Record<string, any> = {
     title: "Stage Lighting",
     description: "Theatrical lighting design focusing on color theory for Sunecho 3.",
     content: "This work applies theatrical lighting design principles to explore color theory. The scene was designed to recreate the specific atmosphere of Sunecho 3 by LJ Altvater. I utilized theater fixtures to balance a green UV glow on geometric set pieces with a purple environment wash. This required precise exercise in color mixing and beam control. These optical principles apply to an audience just as they would to a scientific detector.",
-    images: ["/projects/stage-lighting-ref.JPG", "/projects/stage-lighting-still.JPG"],
+    images: ["/projects/stage-lighting-still.JPG", "/projects/stage-lighting-ref.JPG"],
     year: "2024",
     role: "Lighting Designer",
     tech: ["Vectorworks", "ETC EOS", "Color Theory"],
