@@ -190,6 +190,7 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
               );
             })}
           </div>
+        </div>
         )}
 
         {/* Project Description (Now at bottom) */}
