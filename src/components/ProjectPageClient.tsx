@@ -104,15 +104,45 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
         {/* Additional Project Gallery */}
         {project.images && project.images.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-            {project.images.map((img: string, i: number) => (
-              <div key={i} className="w-full relative overflow-hidden border border-white/5 group bg-white/5">
-                <img 
-                  src={img} 
-                  alt={`${project.title} galley ${i + 1}`} 
-                  className="w-full h-auto object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
-                />
-              </div>
-            ))}
+            {project.images.map((img: string, i: number) => {
+              const isPdf = img.toLowerCase().endsWith('.pdf');
+              
+              if (isPdf) {
+                return (
+                  <a 
+                    key={i}
+                    href={img}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full aspect-[4/3] flex flex-col items-center justify-center border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <div className="w-16 h-16 mb-4 flex items-center justify-center border border-cyan/30 rounded-full group-hover:scale-110 transition-transform">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-cyan">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                      </svg>
+                    </div>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-silver/60 group-hover:text-cyan transition-colors text-center px-4">
+                      View Project PDF<br/>
+                      <span className="text-[8px] opacity-40 lowercase">{img.split('/').pop()}</span>
+                    </span>
+                  </a>
+                );
+              }
+
+              return (
+                <div key={i} className="w-full relative overflow-hidden border border-white/5 group bg-white/5">
+                  <img 
+                    src={img} 
+                    alt={`${project.title} gallery ${i + 1}`} 
+                    className="w-full h-auto object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
+                  />
+                </div>
+              );
+            })}
           </div>
         )}
 

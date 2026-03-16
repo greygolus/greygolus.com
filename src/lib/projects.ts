@@ -6,7 +6,7 @@ export const projectData: Record<string, any> = {
     link: "https://greygolus.com/LevitatedQuantumOptomechanicsPosterFinal.pdf",
     linkText: "View Poster",
     image: "/projects/quantum.png",
-    images: ["/projects/quantum-poster.png"],
+    images: ["/projects/quantum-poster.pdf"],
     year: "2024",
     role: "Student Researcher",
     tech: ["MATLAB", "Data Analysis", "Quantum Physics"],
