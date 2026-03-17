@@ -92,7 +92,7 @@ export default function BlackbodySimulation() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-4">
         <div>
           <h3 className="font-display text-4xl uppercase tracking-tighter text-silver mb-2">Spectral Simulator</h3>
-          <p className="font-mono text-sm text-silver/60 uppercase tracking-widest">Planck's Law vs PC-LED</p>
+          <p className="font-mono text-sm text-silver/60 uppercase tracking-widest">Planck&apos;s Law vs PC-LED</p>
         </div>
         
         <div className="flex flex-col gap-4 w-full md:w-1/3">

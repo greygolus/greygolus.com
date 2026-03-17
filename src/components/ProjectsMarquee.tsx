@@ -52,7 +52,7 @@ export default function ProjectsMarquee() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const container = containerRef.current;
       if (!container) return;
 

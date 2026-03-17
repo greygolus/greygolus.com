@@ -20,7 +20,7 @@ export default function Preloader() {
       });
 
       // Animate the counter from 0 to 100
-      let counter = { value: 0 };
+      const counter = { value: 0 };
       tl.to(counter, {
         value: 100,
         duration: 1.5,

@@ -2,11 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 
 export default function Navbar() {
   const [time, setTime] = useState("");
-  const router = useRouter();
   const pathname = usePathname();
   const wrapperRef = useRef<HTMLAnchorElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -70,6 +70,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full p-6 lg:px-12 lg:py-10 z-[500] flex justify-between items-center pointer-events-none mix-blend-difference">
       <ScrollReveal delay={100} direction="none">
         <div className="flex items-center gap-4 pointer-events-auto">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="/logo.png" 
             alt="Grey Golus Logo" 
@@ -95,17 +96,15 @@ export default function Navbar() {
 
       <ScrollReveal delay={500} direction="none">
         <div className="pointer-events-auto flex items-center gap-4 relative z-[99]">
-          <a 
+          <Link 
             href="/#contact"
             ref={wrapperRef}
             data-cursor="pointer"
             className="p-6 -m-6 block cursor-pointer"
             onClick={(e) => { 
-              e.preventDefault(); 
               if (pathname === '/') {
+                e.preventDefault(); 
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                router.push('/#contact');
               }
             }}
           >
@@ -119,7 +118,7 @@ export default function Navbar() {
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b-[2px] border-r-[2px] border-[#FBFBFB80] rounded-br-[10px]"></div>
             <span ref={textRef} className="text-sm font-mono tracking-widest uppercase inline-block font-bold pointer-events-none">Contact</span>
             </div>
-          </a>
+          </Link>
         </div>
       </ScrollReveal>
     </nav>

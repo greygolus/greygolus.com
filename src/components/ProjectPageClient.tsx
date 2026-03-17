@@ -1,15 +1,35 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element */
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
 import dynamic from 'next/dynamic';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const BlackbodySimulation = dynamic(() => import('@/components/BlackbodySimulation'), { ssr: false });
 
 export default function ProjectPageClient({ project, slug, nextProject }: { project: any, slug: string, nextProject: { slug: string, title: string } | null }) {
   const router = useRouter();
   const heroRef = useRef<HTMLDivElement>(null);
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setFullscreenImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (fullscreenImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [fullscreenImage]);
 
   useEffect(() => {
     // Force scroll to top on navigation
@@ -93,11 +113,16 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
         
         {/* Main Project Image (AI Banners for Interferometer/Thin Lens) */}
         {project.image && !['quantum', 'stage-lighting', 'blackbody-led'].includes(slug) && (
-          <div className="w-full relative overflow-hidden border border-white/10 group">
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
+          <div 
+            className="w-full relative overflow-hidden border border-white/10 group cursor-pointer"
+            onClick={() => setFullscreenImage(project.image)}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60 pointer-events-none"></div>
             <img 
               src={project.image} 
               alt={project.title} 
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all duration-700" 
             />
           </div>
@@ -112,12 +137,17 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
                   i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : 
                   i === 4 ? 'md:col-span-2 lg:col-span-3' : ''
                 }`}>
-                  <div className={`w-full relative overflow-hidden border border-white/10 bg-white/5 ${
-                    i === 4 ? 'aspect-auto' : 'aspect-[16/9] md:aspect-auto md:h-80'
-                  }`}>
+                  <div 
+                    className={`w-full relative overflow-hidden border border-white/10 bg-white/5 cursor-pointer ${
+                      i === 4 ? 'aspect-auto' : 'aspect-[16/9] md:aspect-auto md:h-80'
+                    }`}
+                    onClick={() => setFullscreenImage(item.src)}
+                  >
                     <img 
                       src={item.src} 
                       alt={item.caption} 
+                      loading="lazy"
+                      decoding="async"
                       className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 ${
                         i === 4 ? 'object-contain bg-white/5' : 'object-cover'
                       }`} 
@@ -180,10 +210,16 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
               }
 
               return (
-                <div key={i} className="w-full relative overflow-hidden border border-white/5 group bg-white/5">
+                <div 
+                  key={i} 
+                  className="w-full relative overflow-hidden border border-white/5 group bg-white/5 cursor-pointer"
+                  onClick={() => setFullscreenImage(img)}
+                >
                   <img 
                     src={img} 
                     alt={`${project.title} gallery ${i + 1}`} 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
                   />
                 </div>
@@ -230,6 +266,29 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
           </Link>
         </section>
       )}
+
+      {/* Fullscreen Image Modal */}
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 sm:p-8 cursor-zoom-out backdrop-blur-md"
+            onClick={() => setFullscreenImage(null)}
+          >
+            <motion.img 
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              src={fullscreenImage} 
+              alt="Fullscreen view" 
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

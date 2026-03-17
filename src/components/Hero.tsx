@@ -70,7 +70,7 @@ export default function Hero() {
           <ScrollReveal delay={500}>
             <div className="text-center md:text-left">
               <span className="block text-cyan mb-1">Institution</span>
-              University of Rochester '28
+              University of Rochester &apos;28
             </div>
           </ScrollReveal>
           

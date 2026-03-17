@@ -60,7 +60,7 @@ export default function Footer() {
 
       <div className="z-10 flex flex-col items-center justify-center px-6 w-full max-w-7xl">
         <h2 className="font-display text-[12vw] sm:text-[10vw] leading-[0.8] tracking-tighter text-center uppercase text-gradient mb-12 pointer-events-none">
-          LET'S WORK<br/>TOGETHER
+          LET&apos;S WORK<br/>TOGETHER
         </h2>
 
         <a 

@@ -48,7 +48,7 @@ export default function About() {
           {/* Stack */}
           <div>
             <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4">
-              // The Stack
+              {"// The Stack"}
             </h3>
             <ul className="flex flex-col gap-4">
               {stack.map((item, idx) => (
@@ -63,7 +63,7 @@ export default function About() {
           {/* Experience */}
           <div>
             <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4">
-              // Experience
+              {"// Experience"}
             </h3>
             <ul className="flex flex-col gap-6">
               {experience.map((exp, idx) => (

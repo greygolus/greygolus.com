@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const projectData: Record<string, any> = {
   "quantum": {
     title: "Quantum Optomechanics",
