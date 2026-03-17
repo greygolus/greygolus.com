@@ -28,9 +28,9 @@ function MetallicObject() {
   });
 
   return (
-    <Float speed={1} rotationIntensity={0.1} floatIntensity={0.3}>
+    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
       <mesh ref={meshRef}>
-        <torusKnotGeometry args={[0.8, 0.3, 128, 32]} />
+        <torusKnotGeometry args={[0.8, 0.3, 256, 64]} />
         <MeshDistortMaterial 
           color="#F8FAFC"
           emissive="#020817"
@@ -51,8 +51,8 @@ export default function InteractiveScene() {
   return (
     <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
       <Canvas
-        dpr={1}
-        gl={{ antialias: false, powerPreference: 'high-performance' }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: 'high-performance' }}
         camera={{ position: [0, 0, 8], fov: 50 }}
       >
         <ambientLight intensity={0.2} color="#ffffff" />
