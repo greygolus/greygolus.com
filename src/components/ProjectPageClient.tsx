@@ -132,26 +132,19 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
         {/* Quantum Specialized Grid Gallery */}
         {slug === 'quantum' && project.gallery && (
           <div className="w-full flex flex-col gap-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {project.gallery.map((item: any, i: number) => (
-                <div key={i} className={`flex flex-col gap-4 group ${
-                  i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : 
-                  i === 4 ? 'md:col-span-2 lg:col-span-3' : ''
-                }`}>
+                <div key={i} className="flex flex-col gap-4 group">
                   <div 
-                    className={`w-full relative overflow-hidden border border-white/10 bg-white/5 cursor-pointer ${
-                      i === 4 ? 'aspect-auto' : 'aspect-[16/9] md:aspect-auto md:h-80'
-                    }`}
+                    className="w-full relative overflow-hidden border border-white/10 bg-white/5 cursor-pointer aspect-[16/9] md:h-80"
                     onClick={() => setFullscreenImage(item.src)}
                   >
                     <Image 
                       src={item.src} 
                       alt={item.caption} 
                       fill
-                      sizes={i === 4 ? "100vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
-                      className={`w-full h-full transition-all duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 ${
-                        i === 4 ? 'object-contain bg-white/5' : 'object-cover'
-                      }`} 
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
                     />
                   </div>
                   <div className="flex gap-4 items-start px-2">

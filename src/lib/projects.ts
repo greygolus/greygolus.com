@@ -10,8 +10,7 @@ export const projectData: Record<string, any> = {
       { src: "/projects/quantum/quantum-1.jpg", caption: "A side view of the high vacuum chamber where the silica particle is levitated." },
       { src: "/projects/quantum/quantum-2.jpg", caption: "Top down view of the experimental setup showing the laser entry and detection ports." },
       { src: "/projects/quantum/quantum-3.jpg", caption: "The custom alignment system used to stabilize the laser trapping beam." },
-      { src: "/projects/quantum/quantum-4.jpg", caption: "An image of the actual 100nm silica particle held in the optical trap." },
-      { src: "/projects/quantum/quantum-5.jpg", caption: "Detailed schematic diagram of the optical path and detection bridge." }
+      { src: "/projects/quantum/quantum-4.jpg", caption: "An image of the actual 100nm silica particle held in the optical trap." }
     ],
     year: "2024",
     role: "Student Researcher",
