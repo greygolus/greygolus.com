@@ -1,13 +1,20 @@
-"use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const stack = ["MATLAB", "CodeV", "Zemax OpticStudio", "Excel", "Geometrical Optical Systems", "OSHA Scissor Lift Certified"];
+const stack = [
+  { name: "MATLAB", desc: "Self-taught since Fall '24 and further refined through advanced coursework. Now a daily-use tool for modeling physical systems, data analysis, and laboratory automation." },
+  { name: "CodeV", desc: "Establishing a technical foundation in industry-standard lens design software. Actively developing ray-tracing and optimization skills for complex optical systems." },
+  { name: "Zemax OpticStudio", desc: "Developing proficiency in sequential and non-sequential optical modeling. Leveraging professional tools to visualize wave propagation and system performance." },
+  { name: "Excel", desc: "Expert user with deep experience in organizational logic and data modeling. Proficient in advanced functions, pivot tables, and lookups for both engineering and business applications." },
+  { name: "Geometrical Optical Systems", desc: "Comprehensive study of optical properties and system deconstruction. Skilled in applying theoretical strategies to analyze and optimize physical light-paths." },
+  { name: "OSHA Scissor Lift Certified", desc: "Professionally certified for high-access operations. Licensed to manage lighting fixtures and infrastructure for large-scale theatrical and architectural installations." }
+];
 const experience = [
   { role: "Cable Intern", company: "ITN Networks", year: "2025", desc: "Campaign adjustments, system updates, advanced Excel data processing" },
   { role: "Student Research Project", company: "U of R Quantum Lab", year: "2024", desc: "Studied Rabi oscillations in levitated particles for a class-led research project. Hands-on with vacuum systems and laser diagnostics, culminating in a technical poster presentation." },
@@ -24,6 +31,7 @@ export default function About() {
   const expListRef = useRef<HTMLUListElement>(null);
   const stackHeadingRef = useRef<HTMLHeadingElement>(null);
   const expHeadingRef = useRef<HTMLHeadingElement>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -141,11 +149,34 @@ export default function About() {
             <h3 ref={stackHeadingRef} className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4 opacity-0">
               {"// The Stack"}
             </h3>
-            <ul ref={stackListRef} className="flex flex-col gap-4">
+            <ul ref={stackListRef} className="flex flex-col gap-6">
               {stack.map((item, idx) => (
-                <li key={idx} className="font-display text-xl uppercase tracking-tighter text-silver/80 flex items-center gap-4 hover:translate-x-2 transition-transform cursor-default group opacity-0">
-                  <span className="text-cyan/30 text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">►</span>
-                  {item}
+                <li 
+                  key={idx} 
+                  className="flex flex-col gap-2 opacity-0"
+                  onMouseEnter={() => setHoveredSkill(idx)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                >
+                  <div className="font-display text-xl uppercase tracking-tighter text-silver/80 flex items-center gap-4 hover:translate-x-2 transition-transform cursor-help group">
+                    <span className="text-cyan/30 text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">►</span>
+                    {item.name}
+                  </div>
+                  
+                  <AnimatePresence>
+                    {(hoveredSkill === idx) && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-mono text-[10px] md:text-xs text-silver/40 uppercase tracking-widest leading-relaxed border-l border-cyan/20 pl-4 ml-6">
+                          {item.desc}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </li>
               ))}
             </ul>
