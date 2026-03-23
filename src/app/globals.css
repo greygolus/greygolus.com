@@ -23,7 +23,7 @@
   }
 }
 
-/* Global noise overlay */
+/* Global noise overlay - Optimized */
 body::before {
   content: "";
   position: fixed;
@@ -32,10 +32,10 @@ body::before {
   height: 100vh;
   background-image: url("/noise.png");
   background-size: 128px 128px;
-  opacity: 0.1;
+  opacity: 0.03; /* Reduced opacity */
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: overlay;
+  /* Removed expensive mix-blend-mode */
 }
 
 /* Optical Grid & Background Glows - Optimized for performance */
@@ -66,11 +66,11 @@ body::after {
   position: fixed;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(84, 200, 255, 0.08) 0%, transparent 70%);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(84, 200, 255, 0.04) 0%, transparent 70%);
+  filter: blur(100px); /* Increased blur, decreased opacity */
   pointer-events: none;
   z-index: -1;
-  animation: leak-float 15s infinite alternate ease-in-out;
+  animation: leak-float 20s infinite alternate ease-in-out;
 }
 
 @keyframes leak-float {

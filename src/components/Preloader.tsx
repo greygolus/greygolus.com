@@ -59,8 +59,8 @@ export default function Preloader() {
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center pointer-events-none"
     >
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'1.5\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E')] opacity-20 mix-blend-overlay"></div>
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+      <div className="absolute inset-0 bg-[url('/noise.png')] bg-[length:128px_128px] opacity-[0.05] pointer-events-none"></div>
       
       <div className="flex flex-col items-center gap-6 z-10 w-full max-w-md px-12">
         <div className="w-full flex justify-between font-mono text-[10px] uppercase tracking-[0.5em] text-cyan/60 mb-2">
