@@ -55,7 +55,6 @@ export default function Footer() {
       {/* Background stippled massive graphic */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
         <div className="w-[120vw] h-[120vw] md:w-[80vw] md:h-[80vw] rounded-full bg-gradient-to-t from-cyan-900 via-transparent to-black blur-[50px] mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'1.5\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E')] opacity-30 mix-blend-overlay"></div>
       </div>
 
       <div className="z-10 flex flex-col items-center justify-center px-6 w-full max-w-7xl">

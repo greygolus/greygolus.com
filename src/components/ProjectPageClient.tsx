@@ -55,7 +55,6 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
   return (
     <main className="min-h-screen bg-black relative overflow-x-hidden selection:bg-cyan selection:text-black pt-32 pb-24">
       {/* Background stipple */}
-      <div className="fixed inset-0 pointer-events-none z-50 mix-blend-overlay opacity-30 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'1.5\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E')]"></div>
 
       {/* Hero Header */}
       <section className="px-6 lg:px-24 mb-24 max-w-[1600px] mx-auto" ref={heroRef}>
