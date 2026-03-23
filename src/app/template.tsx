@@ -20,24 +20,52 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* Cinematic wipe transition overlay */}
+      {/* Layer 1: Cinematic black wipe overlay */}
       <motion.div
         key={pathname + "-overlay"}
-        initial={{ y: 0 }}
-        animate={{ y: "-100vh" }}
+        initial={{ scaleY: 1 }}
+        animate={{ scaleY: 0 }}
         transition={{ 
-          duration: 0.8, 
+          duration: 0.7, 
           ease: [0.22, 1, 0.36, 1],
-          delay: 0.1 
+          delay: 0.05 
         }}
-        className="fixed inset-0 z-[9000] bg-black pointer-events-none border-b border-cyan/20 drop-shadow-[0_10px_30px_rgba(84,200,255,0.1)]"
+        style={{ transformOrigin: "top" }}
+        className="fixed inset-0 z-[9000] bg-black pointer-events-none"
         onAnimationComplete={() => {
           if (typeof window !== "undefined") {
             ScrollTrigger.refresh();
           }
         }}
       />
-      {children}
+
+      {/* Layer 2: Subtle cyan accent line that sweeps across */}
+      <motion.div
+        key={pathname + "-accent"}
+        initial={{ scaleX: 0, opacity: 1 }}
+        animate={{ scaleX: 1, opacity: 0 }}
+        transition={{ 
+          scaleX: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 0.4, delay: 0.5 }
+        }}
+        style={{ transformOrigin: "left" }}
+        className="fixed top-0 left-0 right-0 h-[2px] z-[9001] bg-gradient-to-r from-transparent via-cyan to-transparent pointer-events-none"
+      />
+
+      {/* Layer 3: Content fade-in */}
+      <motion.div
+        key={pathname + "-content"}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: 0.5, 
+          ease: [0.22, 1, 0.36, 1],
+          delay: 0.3
+        }}
+      >
+        {children}
+      </motion.div>
     </>
   );
 }
+

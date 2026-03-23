@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const BlackbodySimulation = dynamic(() => import('@/components/BlackbodySimulation'), { ssr: false });
@@ -99,7 +100,7 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
       {/* Massive Gradient Banner representing the project */}
       <section className="w-full h-[60vh] relative overflow-hidden mb-24">
         <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-40 mix-blend-screen`}></div>
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] text-white/5 whitespace-nowrap tracking-tighter pointer-events-none">
           {project.title.substring(0, 10)}...
         </div>
@@ -117,12 +118,13 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
             onClick={() => setFullscreenImage(project.image)}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60 pointer-events-none"></div>
-            <img 
+            <Image 
               src={project.image} 
               alt={project.title} 
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all duration-700" 
+              fill
+              priority
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700" 
             />
           </div>
         )}
@@ -142,12 +144,12 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
                     }`}
                     onClick={() => setFullscreenImage(item.src)}
                   >
-                    <img 
+                    <Image 
                       src={item.src} 
                       alt={item.caption} 
-                      loading="lazy"
-                      decoding="async"
-                      className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 ${
+                      fill
+                      sizes={i === 4 ? "100vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+                      className={`w-full h-full transition-all duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 ${
                         i === 4 ? 'object-contain bg-white/5' : 'object-cover'
                       }`} 
                     />
@@ -214,13 +216,15 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
                   className="w-full relative overflow-hidden border border-white/5 group bg-white/5 cursor-pointer"
                   onClick={() => setFullscreenImage(img)}
                 >
-                  <img 
-                    src={img} 
-                    alt={`${project.title} gallery ${i + 1}`} 
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
-                  />
+                  <div className="relative aspect-video w-full">
+                    <Image 
+                      src={img} 
+                      alt={`${project.title} gallery ${i + 1}`} 
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" 
+                    />
+                  </div>
                 </div>
               );
             })}

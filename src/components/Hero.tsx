@@ -2,16 +2,71 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import InteractiveScene from './InteractiveScene';
-import ScrollReveal from './ScrollReveal';
 
-export default function Hero() {
-  const textRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
+// Splits a string into individually animated character spans
+function SplitText({ 
+  children, 
+  className = "", 
+  charClass = "",
+  delay = 0,
+  stagger = 0.03,
+  duration = 0.8
+}: { 
+  children: string; 
+  className?: string; 
+  charClass?: string;
+  delay?: number;
+  stagger?: number;
+  duration?: number;
+}) {
+  const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Idle floating animation for glow
-    const idleCtx = gsap.context(() => {
+    if (!containerRef.current) return;
+    const chars = containerRef.current.querySelectorAll('.split-char');
+    
+    gsap.fromTo(chars, 
+      { 
+        y: 80, 
+        opacity: 0,
+        rotateX: -40,
+      },
+      { 
+        y: 0, 
+        opacity: 1,
+        rotateX: 0,
+        duration,
+        stagger,
+        delay,
+        ease: 'power3.out',
+      }
+    );
+  }, [delay, stagger, duration]);
+
+  return (
+    <span ref={containerRef} className={className} style={{ perspective: '600px' }}>
+      {children.split('').map((char, i) => (
+        <span 
+          key={i} 
+          className={`split-char inline-block opacity-0 ${charClass}`}
+          style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+export default function Hero() {
+  const containerRef = useRef<HTMLElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const metaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Idle floating animation for glow
       gsap.to(glowRef.current, {
         y: 30,
         x: -20,
@@ -21,11 +76,21 @@ export default function Hero() {
         yoyo: true,
         ease: 'sine.inOut'
       });
+
+      // Subtitle fade in
+      gsap.fromTo(subtitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: 'power3.out' }
+      );
+
+      // Meta section slide up
+      gsap.fromTo(metaRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, delay: 1.4, ease: 'power3.out' }
+      );
     }, containerRef);
 
-    return () => {
-      idleCtx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -48,48 +113,51 @@ export default function Hero() {
       <div className="optical-leak" style={{ top: '20%', left: '10%' }} />
       <div className="optical-leak" style={{ bottom: '10%', right: '5%', animationDelay: '-7s' }} />
 
-      <div ref={textRef} className="z-10 w-full px-6 flex flex-col items-center justify-center pointer-events-none relative">
+      <div className="z-10 w-full px-6 flex flex-col items-center justify-center pointer-events-none relative">
         
         {/* Text Readability Backplate */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] max-w-5xl h-[80vh] bg-black/60 blur-[100px] -z-10 rounded-full pointer-events-none mix-blend-multiply"></div>
 
-        <ScrollReveal delay={100}>
-          <p className="font-mono text-xs md:text-sm text-silver/50 uppercase tracking-[0.4em] mb-4 text-center">
-            Lighting &middot; Optics &middot; Functional Design
-          </p>
-        </ScrollReveal>
+        <p ref={subtitleRef} className="font-mono text-xs md:text-sm text-silver/50 uppercase tracking-[0.4em] mb-4 text-center opacity-0">
+          Lighting &middot; Optics &middot; Functional Design
+        </p>
         
-        <ScrollReveal delay={300} direction="up">
-          <h1 className="font-display text-[12vw] sm:text-7xl md:text-8xl lg:text-[11rem] leading-[0.8] tracking-tighter mb-8 text-center uppercase text-gradient">
-            OPTICAL<br/>
-            <span className="text-silver font-outfit font-light tracking-[-0.05em]">ENGINEERING</span>
-          </h1>
-        </ScrollReveal>
+        <h1 className="font-display text-[12vw] sm:text-7xl md:text-8xl lg:text-[11rem] leading-[0.8] tracking-tighter mb-8 text-center uppercase">
+          <SplitText delay={0.5} stagger={0.04} duration={0.9} charClass="text-gradient">
+            OPTICAL
+          </SplitText>
+          <br/>
+          <SplitText 
+            delay={0.8} 
+            stagger={0.03} 
+            duration={0.9}
+            charClass="text-silver font-outfit font-light tracking-[-0.05em]"
+          >
+            ENGINEERING
+          </SplitText>
+        </h1>
         
-        <div className="w-full max-w-2xl px-4 flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-xs uppercase tracking-widest text-silver/70 border-t border-white/10 pt-8 mt-12">
-          <ScrollReveal delay={500}>
-            <div className="text-center md:text-left">
-              <span className="block text-cyan mb-1">Institution</span>
-              University of Rochester &apos;28
-            </div>
-          </ScrollReveal>
+        <div ref={metaRef} className="w-full max-w-2xl px-4 flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-xs uppercase tracking-widest text-silver/70 border-t border-white/10 pt-8 mt-12 opacity-0">
+          <div className="text-center md:text-left">
+            <span className="block text-cyan mb-1">Institution</span>
+            University of Rochester &apos;28
+          </div>
           
-          <ScrollReveal delay={600}>
-            <div className="text-center md:text-right">
-              <span className="block text-cyan mb-1">Current Status</span>
-              <a 
-                href="https://linkedin.com/in/grey-golus-632692353" 
-                target="_blank" 
-                rel="noreferrer" 
-                data-cursor="pointer"
-                className="hover:text-cyan hover:underline transition-all pointer-events-auto"
-              >
-                Student / Available for Internships
-              </a>
-            </div>
-          </ScrollReveal>
+          <div className="text-center md:text-right">
+            <span className="block text-cyan mb-1">Current Status</span>
+            <a 
+              href="https://linkedin.com/in/grey-golus-632692353" 
+              target="_blank" 
+              rel="noreferrer" 
+              data-cursor="pointer"
+              className="hover:text-cyan hover:underline transition-all pointer-events-auto"
+            >
+              Student / Available for Internships
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+

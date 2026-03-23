@@ -1,5 +1,11 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const stack = ["MATLAB", "CodeV", "Zemax OpticStudio", "Excel", "Geometrical Optical Systems", "OSHA Scissor Lift Certified"];
 const experience = [
@@ -10,8 +16,93 @@ const experience = [
 ];
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const bioRef = useRef<HTMLParagraphElement>(null);
+  const resumeRef = useRef<HTMLDivElement>(null);
+  const stackListRef = useRef<HTMLUListElement>(null);
+  const expListRef = useRef<HTMLUListElement>(null);
+  const stackHeadingRef = useRef<HTMLHeadingElement>(null);
+  const expHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      gsap.fromTo(headingRef.current,
+        { opacity: 0, y: 40 },
+        { 
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: headingRef.current, start: 'top 85%' }
+        }
+      );
+
+      // Bio text
+      gsap.fromTo(bioRef.current,
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, y: 0, duration: 1, delay: 0.2, ease: 'power3.out',
+          scrollTrigger: { trigger: bioRef.current, start: 'top 85%' }
+        }
+      );
+
+      // Resume button
+      gsap.fromTo(resumeRef.current,
+        { opacity: 0, y: 20 },
+        { 
+          opacity: 1, y: 0, duration: 0.8, delay: 0.3, ease: 'power3.out',
+          scrollTrigger: { trigger: resumeRef.current, start: 'top 90%' }
+        }
+      );
+
+      // Stack heading
+      gsap.fromTo(stackHeadingRef.current,
+        { opacity: 0, x: -20 },
+        { 
+          opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: stackHeadingRef.current, start: 'top 85%' }
+        }
+      );
+
+      // Stack list items — staggered cascade
+      if (stackListRef.current) {
+        const stackItems = stackListRef.current.querySelectorAll('li');
+        gsap.fromTo(stackItems,
+          { opacity: 0, x: -30 },
+          { 
+            opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+            scrollTrigger: { trigger: stackListRef.current, start: 'top 80%' }
+          }
+        );
+      }
+
+      // Experience heading
+      gsap.fromTo(expHeadingRef.current,
+        { opacity: 0, x: -20 },
+        { 
+          opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: expHeadingRef.current, start: 'top 85%' }
+        }
+      );
+
+      // Experience list items — staggered cascade
+      if (expListRef.current) {
+        const expItems = expListRef.current.querySelectorAll('li');
+        gsap.fromTo(expItems,
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+            scrollTrigger: { trigger: expListRef.current, start: 'top 80%' }
+          }
+        );
+      }
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="min-h-screen w-full bg-black py-24 px-6 lg:px-12 flex flex-col justify-center border-t border-white/10 relative">
+    <section ref={sectionRef} className="min-h-screen w-full bg-black py-24 px-6 lg:px-12 flex flex-col justify-center border-t border-white/10 relative">
       <div className="absolute top-12 left-6 lg:left-12 font-mono text-xs uppercase tracking-widest text-silver/50">
         [ 02 About & Stack ]
       </div>
@@ -20,14 +111,14 @@ export default function About() {
         
         {/* About Text */}
         <div className="flex flex-col gap-8">
-          <h2 className="font-display text-4xl lg:text-5xl uppercase tracking-tighter text-silver">
+          <h2 ref={headingRef} className="font-display text-4xl lg:text-5xl uppercase tracking-tighter text-silver opacity-0">
              Merging Physics<br/><span className="text-cyan text-gradient">With Interactive Media.</span>
           </h2>
-          <p className="font-mono text-sm leading-relaxed text-silver/60 uppercase tracking-widest max-w-md">
+          <p ref={bioRef} className="font-mono text-sm leading-relaxed text-silver/60 uppercase tracking-widest max-w-md opacity-0">
             I am Grey Golus, an Optical Engineering student at the <a href="https://www.hajim.rochester.edu/optics/" target="_blank" rel="noreferrer" className="text-cyan hover:underline hover:text-white transition-colors">University of Rochester</a> (Class of 2028). I focus on the intersection of optomechanical design, computational imaging, stage and architectural lighting, and MATLAB-based simulation.
           </p>
           
-          <div className="mt-4">
+          <div ref={resumeRef} className="mt-4 opacity-0">
             <a 
               href="/resume.pdf"
               target="_blank"
@@ -47,12 +138,12 @@ export default function About() {
         <div className="flex flex-col gap-16">
           {/* Stack */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4">
+            <h3 ref={stackHeadingRef} className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4 opacity-0">
               {"// The Stack"}
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul ref={stackListRef} className="flex flex-col gap-4">
               {stack.map((item, idx) => (
-                <li key={idx} className="font-display text-xl uppercase tracking-tighter text-silver/80 flex items-center gap-4 hover:translate-x-2 transition-transform cursor-default group">
+                <li key={idx} className="font-display text-xl uppercase tracking-tighter text-silver/80 flex items-center gap-4 hover:translate-x-2 transition-transform cursor-default group opacity-0">
                   <span className="text-cyan/30 text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">►</span>
                   {item}
                 </li>
@@ -62,12 +153,12 @@ export default function About() {
 
           {/* Experience */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4">
+            <h3 ref={expHeadingRef} className="font-mono text-xs uppercase tracking-[0.3em] text-cyan mb-8 border-b border-white/10 pb-4 opacity-0">
               {"// Experience"}
             </h3>
-            <ul className="flex flex-col gap-6">
+            <ul ref={expListRef} className="flex flex-col gap-6">
               {experience.map((exp, idx) => (
-                <li key={idx} className="flex flex-col gap-1 group hover:opacity-100 opacity-70 transition-opacity cursor-default">
+                <li key={idx} className="flex flex-col gap-1 group hover:opacity-100 opacity-0 transition-opacity cursor-default">
                   <div className="flex flex-col sm:flex-row justify-between sm:items-baseline gap-2">
                     <span className="font-display text-xl uppercase tracking-tighter text-silver group-hover:text-cyan transition-colors">
                       {exp.role}
@@ -89,3 +180,4 @@ export default function About() {
     </section>
   );
 }
+
