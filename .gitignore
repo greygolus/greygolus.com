@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# linting and temporary files
+lint*.txt
+lint-results.json
+temp*.txt
+tracked_files.txt
+interferometer.html
+projects.html
