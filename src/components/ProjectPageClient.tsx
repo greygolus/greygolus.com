@@ -33,9 +33,15 @@ export default function ProjectPageClient({ project, slug, nextProject }: { proj
   }, [fullscreenImage]);
 
   useEffect(() => {
-    // Force scroll to top on navigation
-    window.scrollTo(0, 0);
+    // Force scroll to top on navigation with a slight delay for smooth-scroll compatibility
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 10);
+    
+    return () => clearTimeout(timer);
+  }, [slug]);
 
+  useEffect(() => {
     if (project && heroRef.current) {
       gsap.fromTo(heroRef.current, 
         { opacity: 0, y: 50 },

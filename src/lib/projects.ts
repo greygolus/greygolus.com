@@ -2,8 +2,8 @@
 export const projectData: Record<string, any> = {
   "quantum": {
     title: "Quantum Optomechanics",
-    description: "Research on levitated nanoparticles cooled toward their motional ground state.",
-    content: "A 100nm silica particle is levitated by a 1064nm laser within a high vacuum environment. The goal is to cool the motional state toward its ground level. We use two Electro Optic Modulators to control beam polarization and coupled vibrational modes. A separate 532nm probe beam passes through a photodiode bridge to record motion signals. I then convert voltage data into phonon counts to observe Rabi oscillations. This system serves as a macroscopic analog for a quantum bit.",
+    description: "A technical study of optical levitation and Rabi oscillations as a class-led research project.",
+    content: "This project was a final research assignment for my Geometrical Optical Systems class, where we studied a 100nm silica particle levitated by a 1064nm laser. I worked with the high vacuum environment and used Electro-Optic Modulators to control vibrational modes. A 532nm probe beam was used to record signals, which I then processed in MATLAB to observe Rabi oscillations. The focus was on the experimental methodology and presenting the findings via a technical research poster.",
     link: "/projects/quantum-poster.pdf",
     linkText: "View Poster",
     gallery: [

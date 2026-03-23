@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 const stack = ["MATLAB", "CodeV", "Zemax OpticStudio", "Excel", "Geometrical Optical Systems", "OSHA Scissor Lift Certified"];
 const experience = [
   { role: "Cable Intern", company: "ITN Networks", year: "2025", desc: "Campaign adjustments, system updates, advanced Excel data processing" },
-  { role: "Student Researcher", company: "U of R Quantum Lab", year: "2024", desc: "Vacuum systems, EOMs, photodiode detection, MATLAB conversion" },
+  { role: "Student Research Project", company: "U of R Quantum Lab", year: "2024", desc: "Studied Rabi oscillations in levitated particles for a class-led research project. Hands-on with vacuum systems and laser diagnostics, culminating in a technical poster presentation." },
   { role: "Intern", company: "B&S Accounting", year: "2024", desc: "Designed firm website, UI/UX structure, data entry" },
   { role: "Co-Founder", company: "York Prep Robotics", year: "2022 - 2024", desc: "Engineering leadership, project coordination, STEAM education" }
 ];
