@@ -4,6 +4,8 @@ import gsap from 'gsap';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
+import Image from 'next/image';
+import logoImg from '../../public/logo.png';
 
 export default function Navbar() {
   const [time, setTime] = useState("");
@@ -70,9 +72,8 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full p-6 lg:px-12 lg:py-10 z-[500] flex justify-between items-center pointer-events-none mix-blend-difference">
       <ScrollReveal delay={100} direction="none">
         <div className="flex items-center gap-4 pointer-events-auto">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/logo.png" 
+          <Image 
+            src={logoImg} 
             alt="Grey Golus Logo" 
             className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
           />
