@@ -29,17 +29,18 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Grey Golus | Optical Engineering",
-  description: "Grey Golus is an Optical and Multimedia Designer specializing in Wave Optics and Quantum Systems.",
+  description: "Personal portfolio website",
+  icons: {
+    icon: '/logo.png',
+  },
   openGraph: {
     title: "Grey Golus | Optical Engineering",
-    description: "Grey Golus is an Optical and Multimedia Designer specializing in Wave Optics and Quantum Systems.",
+    description: "Personal portfolio website",
     url: 'https://greygolus.com',
     siteName: 'Grey Golus Portfolio',
     images: [
       {
-        url: '/projects/interferometer.png', // Using the sleek generated interferometer graphic as the default preview
-        width: 1200,
-        height: 630,
+        url: '/logo.png',
         alt: 'Grey Golus Portfolio Preview',
       },
     ],
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Grey Golus | Optical Engineering",
-    description: "Grey Golus is an Optical and Multimedia Designer.",
-    images: ['/projects/interferometer.png'],
+    description: "Personal portfolio website",
+    images: ['/logo.png'],
   },
 };
 
