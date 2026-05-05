@@ -51,7 +51,7 @@ export default function UnpublishedProjects() {
                         src={project.image} 
                         alt={project.title} 
                         fill 
-                        className="object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-[1.07] group-hover:rotate-1"
+                        className="object-cover scale-150 transition-transform duration-700 group-hover:scale-[1.6] group-hover:rotate-2"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     )}
