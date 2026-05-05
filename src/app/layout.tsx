@@ -31,6 +31,11 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Grey Golus | Optical Engineering",
   description: "Grey's Personal Portfolio Website",
+  icons: {
+    icon: '/logo.png?v=2',
+    shortcut: '/logo.png?v=2',
+    apple: '/logo.png?v=2',
+  },
   openGraph: {
     title: "Grey Golus | Optical Engineering",
     description: "Grey's Personal Portfolio Website",
