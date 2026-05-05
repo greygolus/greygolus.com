@@ -71,15 +71,26 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full p-6 lg:px-12 lg:py-10 z-[500] flex justify-between items-center pointer-events-none mix-blend-difference">
       <ScrollReveal delay={100} direction="none">
-        <div className="flex items-center gap-4 pointer-events-auto">
-          <Image 
-            src={logoImg} 
-            alt="Grey Golus Logo" 
-            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-          />
-          <div className="hidden sm:block font-display text-xl font-bold tracking-widest text-silver">
-            GREYGOLUS
-          </div>
+        <div className="pointer-events-auto">
+          <Link 
+            href="/" 
+            onClick={(e) => {
+              if (pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="flex items-center gap-4 cursor-pointer group"
+          >
+            <Image 
+              src={logoImg} 
+              alt="Grey Golus Logo" 
+              className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] group-hover:scale-105 transition-transform"
+            />
+            <div className="hidden sm:block font-display text-xl font-bold tracking-widest text-silver group-hover:text-cyan transition-colors">
+              GREYGOLUS
+            </div>
+          </Link>
         </div>
       </ScrollReveal>
       
@@ -98,14 +109,15 @@ export default function Navbar() {
       <ScrollReveal delay={500} direction="none">
         <div className="pointer-events-auto flex items-center gap-4 relative z-[99]">
           <Link 
-            href="/#contact"
+            href={pathname === '/' || pathname === '/unpublished' ? '#contact' : '/#contact'}
             ref={wrapperRef}
             data-cursor="pointer"
             className="p-6 -m-6 block cursor-pointer"
             onClick={(e) => { 
-              if (pathname === '/') {
+              const contactEl = document.getElementById('contact');
+              if (contactEl) {
                 e.preventDefault(); 
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                contactEl.scrollIntoView({ behavior: 'smooth' });
               }
             }}
           >

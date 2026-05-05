@@ -1,49 +1,40 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# General ignores
+node_modules/
 .DS_Store
-*.pem
+Thumbs.db
+*.log
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# Agent and IDE directories
+.*
+# Explicitly allow these if they exist (though not seen yet)
+!.gitignore
+!.github/
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# linting and temporary files
-lint*.txt
-lint-results.json
-temp*.txt
-tracked_files.txt
-interferometer.html
-projects.html
+# Backup and temp files
+new_index.html
+old_projects.html
+projects_clean.html
+projects_clean_2.html
+temp_bb.txt
+img_size_log.txt
+website_content.txt
+apply_art.js
+clean_proj.js
+clean_proj2.js
+extract.js
+fix.py
+fix_base64.js
+fix_final.js
+fix_index.js
+fix_projects.js
+fix_projects.py
+fix_projects2.js
+fix_projects3.js
+fix_quantum.js
+fix_stage.js
+fix_sunecho.js
+inspect_proj.js
+refactor_quantum.js
+refactor_quantum.py
+restore_carousel.js
+verify.js

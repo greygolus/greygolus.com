@@ -11,6 +11,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
       setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
         ScrollTrigger.refresh();

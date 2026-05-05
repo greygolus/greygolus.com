@@ -152,7 +152,7 @@ export default function Hero() {
               data-cursor="pointer"
               className="hover:text-cyan hover:underline transition-all pointer-events-auto"
             >
-              Student / Available for Internships
+              Spectrum Reach Summer 2026 intern
             </a>
           </div>
         </div>

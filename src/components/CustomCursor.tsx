@@ -66,15 +66,20 @@ export default function CustomCursor() {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center font-mono text-[10px] text-black font-bold tracking-tighter"
+        className="custom-cursor-element fixed top-0 left-0 w-3 h-3 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center font-mono text-[10px] text-black font-bold tracking-tighter"
       >
         <span ref={textRef}>{cursorText}</span>
       </div>
       <style jsx global>{`
-        * {
-          cursor: none !important;
+        @media (pointer: fine) {
+          * {
+            cursor: none !important;
+          }
         }
-        @media (max-width: 768px) {
+        @media (pointer: coarse) {
+          .custom-cursor-element {
+            display: none !important;
+          }
           * {
             cursor: auto !important;
           }

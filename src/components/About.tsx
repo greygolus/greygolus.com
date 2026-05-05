@@ -17,6 +17,7 @@ const stack = [
   { name: "OSHA Scissor Lift Certified", desc: "Professionally certified for high-access operations. Licensed to manage lighting fixtures and infrastructure for large-scale theatrical and architectural installations." }
 ];
 const experience = [
+  { role: "Product Management Intern", company: "Spectrum Reach", year: "Summer 2026", desc: "This is what I am doing this summer. I will add a real explanation at the end of the summer." },
   { role: "Cable Intern", company: "ITN Networks", year: "2025", desc: "Campaign adjustments, system updates, advanced Excel data processing" },
   { role: "Student Research Project", company: "U of R Quantum Lab", year: "2024", desc: "Studied Rabi oscillations in levitated particles for a class-led research project. Hands-on with vacuum systems and laser diagnostics, culminating in a technical poster presentation." },
   { role: "Intern", company: "B&S Accounting", year: "2024", desc: "Designed firm website, UI/UX structure, data entry" },

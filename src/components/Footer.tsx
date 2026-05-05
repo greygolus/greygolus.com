@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Link from 'next/link';
 
 export default function Footer() {
   const wrapperRef = useRef<HTMLAnchorElement>(null);
@@ -83,6 +84,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 mt-12 mb-4 font-mono text-xs uppercase tracking-widest text-silver/60">
           <a href="https://github.com/greygolus" target="_blank" rel="noreferrer" className="hover:text-cyan transition-colors z-20 relative">GitHub</a>
           <a href="https://linkedin.com/in/grey-golus-632692353" target="_blank" rel="noreferrer" className="hover:text-cyan transition-colors z-20 relative">LinkedIn</a>
+          <Link href="/unpublished" className="hover:text-cyan transition-colors z-20 relative">Vault</Link>
           <a href="mailto:ggolus@u.rochester.edu" className="hover:text-cyan transition-colors z-20 relative">Uni Email</a>
           <a href="mailto:golusgrey@gmail.com" className="hover:text-cyan transition-colors z-20 relative">Personal Email</a>
         </div>

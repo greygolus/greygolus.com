@@ -44,6 +44,13 @@ const projects = [
     year: "2024",
     accent: "from-pink-500 to-rose-900",
     slug: "stage-lighting"
+  },
+  {
+    title: "The Vault",
+    description: "Unpublished Works",
+    year: "2026",
+    accent: "from-zinc-500 to-stone-900",
+    slug: "../unpublished"
   }
 ];
 
@@ -81,7 +88,7 @@ export default function ProjectsMarquee() {
         01 Selected Works
       </div>
       
-      <div ref={containerRef} className="flex gap-12 px-6 lg:px-24 w-[350vw] lg:w-[250vw] items-center h-full">
+      <div ref={containerRef} className="flex gap-12 pl-6 lg:pl-24 pr-24 lg:pr-32 w-max items-center h-full">
         {projects.map((project, idx) => (
           <ScrollReveal delay={idx * 150} direction="up" key={idx} className="shrink-0 h-[65vh]">
             <Link 
