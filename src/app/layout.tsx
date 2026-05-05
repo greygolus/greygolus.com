@@ -3,6 +3,7 @@ import { Inter, Space_Mono, Outfit, Syne } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -68,6 +69,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CustomCursor />
           {children}
+          <Analytics />
         </SmoothScroll>
       </body>
     </html>
