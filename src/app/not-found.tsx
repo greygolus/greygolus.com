@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 
 export default function NotFound() {
   return (
@@ -32,8 +31,6 @@ export default function NotFound() {
           <span className="relative z-10">Return to Source</span>
         </Link>
       </section>
-
-      <Footer />
     </main>
   );
 }
