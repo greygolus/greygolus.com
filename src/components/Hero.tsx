@@ -60,7 +60,6 @@ function SplitText({
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const glowWrapperRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
@@ -89,21 +88,6 @@ export default function Hero() {
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1, delay: 1.4, ease: 'power3.out' }
       );
-
-      // Mouse Parallax
-      const handleMouseMove = (e: MouseEvent) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 150; 
-        const y = (e.clientY / window.innerHeight - 0.5) * 150;
-        gsap.to(glowWrapperRef.current, {
-          x,
-          y,
-          duration: 3,
-          ease: 'power2.out'
-        });
-      };
-      window.addEventListener('mousemove', handleMouseMove);
-
-      return () => window.removeEventListener('mousemove', handleMouseMove);
     }, containerRef);
 
     return () => ctx.revert();
@@ -119,12 +103,10 @@ export default function Hero() {
 
       {/* Glow Graphic */}
       <div className="absolute inset-0 flex items-center justify-center mix-blend-screen pointer-events-none">
-        <div ref={glowWrapperRef} className="absolute inset-0 flex items-center justify-center">
-          <div 
-            ref={glowRef}
-            className="w-[80vw] max-w-[800px] h-[80vw] max-h-[800px] rounded-full bg-gradient-to-tr from-[rgba(10,31,46,0.3)] via-[rgba(84,200,255,0.05)] to-transparent blur-[100px] opacity-60" 
-          />
-        </div>
+        <div 
+          ref={glowRef}
+          className="w-[80vw] max-w-[800px] h-[80vw] max-h-[800px] rounded-full bg-gradient-to-tr from-[rgba(10,31,46,0.3)] via-[rgba(84,200,255,0.05)] to-transparent blur-[100px] opacity-60" 
+        />
       </div>
 
       {/* Optical Background Leaks */}
