@@ -29,7 +29,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Grey Golus | Optical Engineering",
+  title: "Grey Golus | Optical Engineer",
   description: "Grey's Personal Portfolio Website",
   icons: {
     icon: '/logo.png?v=2',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     apple: '/logo.png?v=2',
   },
   openGraph: {
-    title: "Grey Golus | Optical Engineering",
+    title: "Grey Golus | Optical Engineer",
     description: "Grey's Personal Portfolio Website",
     url: 'https://greygolus.com',
     siteName: 'Grey Golus Portfolio',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Grey Golus | Optical Engineering",
+    title: "Grey Golus | Optical Engineer",
     description: "Grey's Personal Portfolio Website",
     images: ['/logo.png'],
   },
